@@ -1,0 +1,55 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: nar,Inter ExtraBold,64,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,6,2,2,60,60,440,1
+Style: abu,Inter ExtraBold,64,&H00A8D9FF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,0,100,100,0,0,1,6,2,2,60,60,440,1
+Style: sus,Inter ExtraBold,64,&H00808AFF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,0,100,100,0,0,1,6,2,2,60,60,440,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.60,0:00:02.57,nar,,0,0,0,,{\fad(80,60)}En algún lugar de
+Dialogue: 0,0:00:02.57,0:00:04.25,nar,,0,0,0,,{\fad(80,60)}las montañas de México
+Dialogue: 0,0:00:04.25,0:00:05.47,nar,,0,0,0,,{\fad(80,60)}existe un pueblo que
+Dialogue: 0,0:00:05.47,0:00:06.51,nar,,0,0,0,,{\fad(80,60)}no aparece en los
+Dialogue: 0,0:00:06.51,0:00:07.35,nar,,0,0,0,,{\fad(80,60)}mapas
+Dialogue: 0,0:00:10.20,0:00:11.69,nar,,0,0,0,,{\fad(80,60)}Sus habitantes tienen una
+Dialogue: 0,0:00:11.69,0:00:12.70,nar,,0,0,0,,{\fad(80,60)}regla que nadie se
+Dialogue: 0,0:00:12.70,0:00:14.26,nar,,0,0,0,,{\fad(80,60)}atreve a romper jamás
+Dialogue: 0,0:00:14.26,0:00:15.37,nar,,0,0,0,,{\fad(80,60)}salir después de las
+Dialogue: 0,0:00:15.37,0:00:16.79,nar,,0,0,0,,{\fad(80,60)}tres de la madrugada
+Dialogue: 0,0:00:19.00,0:00:21.11,nar,,0,0,0,,{\fad(80,60)}Durante años nadie preguntó
+Dialogue: 0,0:00:21.11,0:00:23.05,nar,,0,0,0,,{\fad(80,60)}por qué Hasta que
+Dialogue: 0,0:00:23.05,0:00:24.89,nar,,0,0,0,,{\fad(80,60)}una noche un desconocido
+Dialogue: 0,0:00:24.89,0:00:26.10,nar,,0,0,0,,{\fad(80,60)}llegó al pueblo
+Dialogue: 0,0:00:28.10,0:00:30.36,nar,,0,0,0,,{\fad(80,60)}Su nombre era Daniel
+Dialogue: 0,0:00:30.36,0:00:32.25,nar,,0,0,0,,{\fad(80,60)}Tenía veinticuatro años y
+Dialogue: 0,0:00:32.25,0:00:33.25,nar,,0,0,0,,{\fad(80,60)}llevaba más de una
+Dialogue: 0,0:00:33.25,0:00:34.61,nar,,0,0,0,,{\fad(80,60)}década sin regresar a
+Dialogue: 0,0:00:34.61,0:00:35.65,nar,,0,0,0,,{\fad(80,60)}aquel lugar
+Dialogue: 0,0:00:37.60,0:00:39.20,nar,,0,0,0,,{\fad(80,60)}Había recibido una llamada
+Dialogue: 0,0:00:39.20,0:00:41.09,nar,,0,0,0,,{\fad(80,60)}de su abuela Pero
+Dialogue: 0,0:00:41.09,0:00:42.22,nar,,0,0,0,,{\fad(80,60)}había algo extraño en
+Dialogue: 0,0:00:42.22,0:00:43.89,nar,,0,0,0,,{\fad(80,60)}su voz parecía tener
+Dialogue: 0,0:00:43.89,0:00:44.63,nar,,0,0,0,,{\fad(80,60)}miedo
+Dialogue: 0,0:00:46.40,0:00:47.98,nar,,0,0,0,,{\fad(80,60)}Cuando llegó las calles
+Dialogue: 0,0:00:47.98,0:00:51.15,nar,,0,0,0,,{\fad(80,60)}estaban vacías Las ventanas
+Dialogue: 0,0:00:51.15,0:00:53.96,nar,,0,0,0,,{\fad(80,60)}cerradas Y ninguna persona
+Dialogue: 0,0:00:53.96,0:00:55.85,nar,,0,0,0,,{\fad(80,60)}parecía querer ser vista
+Dialogue: 0,0:00:57.40,0:00:58.17,nar,,0,0,0,,{\fad(80,60)}Al entrar a la
+Dialogue: 0,0:00:58.17,0:00:59.53,nar,,0,0,0,,{\fad(80,60)}casa su abuela lo
+Dialogue: 0,0:00:59.53,0:01:00.91,nar,,0,0,0,,{\fad(80,60)}recibió con lágrimas en
+Dialogue: 0,0:01:00.91,0:01:01.91,nar,,0,0,0,,{\fad(80,60)}los ojos
+Dialogue: 0,0:01:04.00,0:01:06.57,abu,,0,0,0,,{\fad(80,60)}Daniel escúchame bien cuando
+Dialogue: 0,0:01:06.57,0:01:07.77,abu,,0,0,0,,{\fad(80,60)}el reloj marque las
+Dialogue: 0,0:01:07.77,0:01:09.12,abu,,0,0,0,,{\fad(80,60)}tres treinta y tres
+Dialogue: 0,0:01:09.12,0:01:10.73,abu,,0,0,0,,{\fad(80,60)}no abras la puerta
+Dialogue: 0,0:01:13.40,0:01:14.44,nar,,0,0,0,,{\fad(80,60)}Pero justo cuando el
+Dialogue: 0,0:01:14.44,0:01:15.91,nar,,0,0,0,,{\fad(80,60)}reloj cambió de hora
+Dialogue: 0,0:01:15.91,0:01:17.11,nar,,0,0,0,,{\fad(80,60)}alguien llamó desde el
+Dialogue: 0,0:01:17.11,0:01:18.08,nar,,0,0,0,,{\fad(80,60)}otro lado
+Dialogue: 0,0:01:21.69,0:01:23.79,sus,,0,0,0,,{\fad(80,60)}Daniel sé que estás
+Dialogue: 0,0:01:23.79,0:01:24.49,sus,,0,0,0,,{\fad(80,60)}ahí
