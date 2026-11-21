@@ -97,7 +97,7 @@ ol.eps li.cur .t::after{content:"  ·  este capítulo";color:var(--poppy);font-w
 
 <script>
 (() => {
-const SUBS = [[0.6,'Sierra Madre Occidental, Sinaloa. 1957.'],[5.4,'En La Tuna, Badiraguato, nace Joaquín Guzmán Loera.'],[8.9,'Su familia es pobre. Viven de lo poco que da la tierra.'],[13.5,'De niño recorre los cerros vendiendo naranjas para ayudar en casa.'],[20.4,'Va poco a la escuela. La deja antes de terminar la primaria.'],[25.8,'Su padre es un hombre duro. En casa, el trabajo empieza antes del sol.'],[32.4,'En la sierra de los años setenta, muchas familias siembran amapola y mariguana.'],[38.7,'Él aprende el oficio cuando apenas es un adolescente.'],[46.4,'Pero quiere algo más que los cerros de Badiraguato.'],[51.0,'Un día se sube a una camioneta rumbo a Culiacán.'],[56.4,'Continuará…']];
+const SUBS = [[0.35,'Sierra Madre Occidental, Sinaloa. 1957.'],[5.45,'En La Tuna, Badiraguato, nace Joaquín Guzmán Loera.'],[9.4,'Su familia es pobre. Viven de lo poco que da la tierra.'],[13.5,'De niño recorre los cerros vendiendo naranjas para ayudar en casa.'],[20.4,'Va poco a la escuela. La deja antes de terminar la primaria.'],[25.8,'Su padre es un hombre duro. En casa, el trabajo empieza antes del sol.'],[32.4,'En la sierra de los años setenta, muchas familias siembran amapola y mariguana.'],[38.7,'Él aprende el oficio cuando apenas es un adolescente.'],[46.4,'Pero quiere algo más que los cerros de Badiraguato.'],[51.0,'Un día se sube a una camioneta rumbo a Culiacán.'],[56.4,'Continuará…']];
 const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
 const list = document.getElementById('script'), vid = document.getElementById('vid');
 SUBS.forEach(([a, txt], i) => {
