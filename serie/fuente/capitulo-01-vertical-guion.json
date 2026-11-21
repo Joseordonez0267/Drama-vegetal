@@ -1,0 +1,14 @@
+[
+ {"scene":"casa","who":"mama","text":"¡Joaquín, mijo! Ya levántate, que las naranjas no se venden solas."},
+ {"scene":"casa","who":"joaquin","text":"Ya voy, amá. Pero hoy las vendo todas, ¿eh?"},
+ {"scene":"camino","who":"vecino","text":"¿A cómo las naranjas, morrillo?"},
+ {"scene":"camino","who":"joaquin","text":"A peso, compa. Y si lleva dos, le hago precio."},
+ {"scene":"camino","who":"vecino","text":"Ah, qué morro tan bueno pa' los negocios."},
+ {"scene":"escuela","who":"maestra","text":"Joaquín, ¿otra vez te vas temprano?"},
+ {"scene":"escuela","who":"joaquin","text":"En mi casa no alcanza, maestra. Me toca trabajar."},
+ {"scene":"alba","who":"papa","text":"Aquí la escuela no da de comer, mijo. Agarra el azadón."},
+ {"scene":"alba","who":"joaquin","text":"Sí, apá."},
+ {"scene":"noche","who":"amigo","text":"Oye, Joaquín. ¿Y tú qué? ¿Toda la vida en estos cerros?"},
+ {"scene":"noche","who":"joaquin2","text":"No, compa. Un día me voy pa' Culiacán. Ya verás."},
+ {"scene":"camion","who":"joaquin2","text":"Adiós, Badiraguato."}
+]
