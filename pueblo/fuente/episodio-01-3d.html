@@ -338,6 +338,7 @@ const pend = grp(wc, 0, 1.8, .14); mesh(Box(.02, .6, .02), M('#b08a40', { metaln
 // side door (right wall, x = 3.95)
 const inDoorG = grp(inn, 3.9, 0, .4); const inDoor = grp(inDoorG, 0, 0, -.65); mesh(Box(.1, 2.2, 1.3), M('#4a2c1a'), inDoor, 0, 1.1, .65);
 for (const y of [.5, 1.7]) mesh(Box(.12, .12, 1.3), M('#2a180c'), inDoor, -.02, y, .65);
+mesh(new THREE.SphereGeometry(.045, 6, 4), M('#b08a40', { metalness: .6, roughness: .35 }), inDoor, -.09, 1.05, 1.15, false); mesh(Box(.04, .14, .05), M('#6a5020', { metalness: .5 }), inDoor, -.06, 1.05, 1.15, false);
 const gap = mesh(Box(.02, .04, 1.3), M('#9ab6ff', { emissive: '#8aa8ff', emissiveIntensity: 2 }), inDoorG, -.06, .02, 0, false);
 // window with moonlight
 mesh(Box(.1, .9, 1.0), M('#2a3a5a', { emissive: '#3a5a9a', emissiveIntensity: .7 }), inn, -3.95, 1.8, 1.6, false);
@@ -397,6 +398,76 @@ function endCardText(k) {
   o2.restore();
 }
 
+
+/* ---------- voting segment: viewers decide part 2 ---------- */
+const easeBack = x => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+function pollScene(t) {
+  const ev = TL.ev, lt = t - ev.poll, k = clamp(lt / (ev.card - ev.poll)), v = V('v1');
+  // 3D background: Daniel's trembling hand inches from the door handle
+  if (DANIEL.root.parent !== inn) inn.add(DANIEL.root); inn.add(ABUELA.root);
+  place(DANIEL, 2.95, 0, .78, Math.PI / 2 + .15); ABUELA.root.visible = false;
+  const reach = ease(clamp(lt / 4));
+  pose(DANIEL, { t, armL: { x: lerp(-.3, -1.35, reach) + Math.sin(t * 16) * .025, z: -.12, el: lerp(-.3, -.35, reach) }, yaw: -.25, pitch: .08, blink: blinkAt(t, 2) });
+  drawClock(wallTex.userData.ctx, 3, 33, 40 + lt); wallTex.needsUpdate = true;
+  const fl = flick(t, .8); candleL.intensity = 7 * fl; fillL.intensity = 2 * fl; doorL.intensity = 7 + 3 * Math.sin(t * 2.2);
+  inDoor.rotation.y = 0; inDoor.position.x = 0; dustP.material.opacity = 0;
+  cam(lerp(2.2, 2.45, k), lerp(1.75, 1.62, k), lerp(2.0, 1.75, k), 3.85, 1.62, .95, lerp(46, 38, k));
+  renderer.render(inn, camera);
+  post(t, clamp(1 - lt / .5));
+  pollUI(t, lt, v);
+}
+function pollUI(t, lt, v) {
+  const ap = n => clamp((lt - n) / .55);
+  o2.fillStyle = `rgba(4,6,12,${.5 * ap(.1)})`; o2.fillRect(0, 0, W, H);
+  const word = s2 => { const w = v.words.find(x => x[2].toLowerCase().startsWith(s2)); return w ? w[0] - TL.ev.poll : 99; };
+  const tA = word('abrir'), tB = word('hacerle'), tC = word('comenta');
+  // which option is highlighted
+  let hi = 0; if (lt > tA - .1 && lt < tB - .1) hi = 1; else if (lt > tB - .1 && lt < tC) hi = 2; else if (lt >= tC + 1.4) hi = Math.floor((lt - tC) / .9) % 2 + 1;
+  o2.save(); o2.textAlign = 'center'; o2.textBaseline = 'middle';
+  // header
+  const h = easeBack(ap(.3)); o2.globalAlpha = ap(.3);
+  o2.save(); o2.translate(W / 2, 255); o2.scale(.7 + .3 * h, .7 + .3 * h);
+  o2.shadowColor = 'rgba(0,0,0,.9)'; o2.shadowBlur = 16; o2.fillStyle = '#f2ead8'; o2.font = '800 44px Cinzel, serif'; o2.fillText('¿QUÉ DEBE', 0, -30); o2.fillText('HACER DANIEL?', 0, 26);
+  o2.restore();
+  o2.globalAlpha = ap(.8); o2.fillStyle = '#ff5a4a'; o2.font = '800 22px Inter, sans-serif'; if ('letterSpacing' in o2) o2.letterSpacing = '5px'; o2.fillText('TÚ DECIDES LA PARTE 2', W / 2, 345); if ('letterSpacing' in o2) o2.letterSpacing = '0px';
+  o2.restore();
+  // cards
+  const card = (i, y, col, letter, l1, l2, icon, delay, fromX) => {
+    const a = ap(delay), e = easeBack(a); if (a <= 0) return;
+    const on = hi === i, pulse = on ? 1 + .035 * (1 + Math.sin(lt * 9)) / 2 + .02 : 1, bob = Math.sin(t * 1.6 + i) * 3;
+    const x0 = 50, w = W - 100, hh = 150;
+    o2.save(); o2.globalAlpha = a; o2.translate(W / 2 + (1 - e) * fromX, y + hh / 2 + bob); o2.scale(pulse, pulse); o2.translate(-W / 2, -hh / 2);
+    // glass: blurred copy of the scene behind
+    o2.save(); o2.beginPath(); o2.roundRect(x0, 0, w, hh, 30); o2.clip(); o2.filter = 'blur(14px)'; o2.drawImage(out, 0, -(y + bob), W, H); o2.filter = 'none';
+    o2.fillStyle = on ? 'rgba(20,16,14,.55)' : 'rgba(12,14,22,.62)'; o2.fillRect(x0, 0, w, hh);
+    const sh = o2.createLinearGradient(0, 0, 0, hh); sh.addColorStop(0, 'rgba(255,255,255,.12)'); sh.addColorStop(.5, 'rgba(255,255,255,0)'); o2.fillStyle = sh; o2.fillRect(x0, 0, w, hh); o2.restore();
+    o2.lineWidth = on ? 4 : 2; o2.strokeStyle = on ? col : 'rgba(255,255,255,.28)'; o2.shadowColor = col; o2.shadowBlur = on ? 28 : 0; o2.beginPath(); o2.roundRect(x0, 0, w, hh, 30); o2.stroke(); o2.shadowBlur = 0;
+    // badge
+    o2.fillStyle = col; o2.beginPath(); o2.arc(x0 + 78, hh / 2, 46, 0, 7); o2.fill(); o2.fillStyle = '#120c08'; o2.font = '800 56px Cinzel, serif'; o2.textAlign = 'center'; o2.textBaseline = 'middle'; o2.fillText(letter, x0 + 78, hh / 2 + 4);
+    // texts
+    o2.textAlign = 'left'; o2.fillStyle = '#ffffff'; let fs = 33; o2.font = `800 ${fs}px Inter, sans-serif`; while (o2.measureText(l1).width > w - 146 - 96 && fs > 22) { fs--; o2.font = `800 ${fs}px Inter, sans-serif`; } o2.fillText(l1, x0 + 146, hh / 2 - 20);
+    o2.fillStyle = 'rgba(235,230,220,.82)'; o2.font = '600 25px Inter, sans-serif'; o2.fillText(l2, x0 + 146, hh / 2 + 24);
+    icon(x0 + w - 62, hh / 2, on);
+    // tap ripple while highlighted
+    if (on) { const rp = (lt * 1.3) % 1; o2.strokeStyle = `rgba(255,255,255,${.7 * (1 - rp)})`; o2.lineWidth = 3; o2.beginPath(); o2.arc(x0 + w - 150, hh * .62, 10 + rp * 42, 0, 7); o2.stroke(); o2.fillStyle = 'rgba(255,255,255,.85)'; o2.beginPath(); o2.arc(x0 + w - 150, hh * .62, 9, 0, 7); o2.fill(); }
+    o2.restore();
+  };
+  const doorIcon = (x, y, on) => { o2.fillStyle = '#3a2416'; o2.fillRect(x - 20, y - 34, 40, 68); o2.save(); o2.translate(x - 20, y); o2.transform(1, -.25 * (on ? 1 : .4), 0, 1, 0, 0); o2.fillStyle = '#8a5a34'; o2.fillRect(0, -34, 30 * (on ? .65 : .95), 68); o2.restore(); o2.fillStyle = 'rgba(255,170,80,.9)'; o2.fillRect(x - 20 + (on ? 22 : 28), y - 34, on ? 18 : 12, 68); };
+  const candleIcon = (x, y, on) => { o2.fillStyle = '#efe4c8'; o2.fillRect(x - 8, y - 4, 16, 38); const f = .8 + .2 * Math.sin(t * 14); const g = o2.createRadialGradient(x, y - 16, 0, x, y - 16, 34); g.addColorStop(0, 'rgba(255,190,90,.8)'); g.addColorStop(1, 'rgba(255,190,90,0)'); o2.fillStyle = g; o2.fillRect(x - 34, y - 50, 68, 68); o2.fillStyle = '#ffd27a'; o2.beginPath(); o2.ellipse(x, y - 16, 7, 14 * f, 0, 0, 7); o2.fill(); };
+  card(1, 440, '#ff9a3c', 'A', 'Sí, le abre la puerta', 'Descubre quién está afuera', doorIcon, 1.0, -W);
+  card(2, 630, '#8fb8ff', 'B', 'Le hace caso a su abuela', 'y no le abre la puerta', candleIcon, 1.35, W);
+  // call to action
+  const cta = ap(tC - .1), ce = easeBack(cta);
+  if (cta > 0) {
+    o2.save(); o2.globalAlpha = cta; o2.textAlign = 'center'; o2.textBaseline = 'middle'; o2.translate(W / 2, 865); o2.scale(.6 + .4 * ce + .03 * Math.sin(lt * 6), .6 + .4 * ce + .03 * Math.sin(lt * 6));
+    o2.fillStyle = 'rgba(0,0,0,.55)'; o2.beginPath(); o2.roundRect(-235, -42, 470, 84, 42); o2.fill();
+    o2.fillStyle = '#ffffff'; o2.font = '800 38px Inter, sans-serif'; o2.fillText('Comenta  A  o  B', 18, 2);
+    // comment bubble icon
+    o2.fillStyle = '#ffffff'; o2.beginPath(); o2.roundRect(-200, -18, 40, 30, 8); o2.fill(); o2.beginPath(); o2.moveTo(-190, 10); o2.lineTo(-196, 22); o2.lineTo(-178, 10); o2.fill();
+    o2.restore();
+    o2.save(); o2.globalAlpha = ap(tC + .6); o2.textAlign = 'center'; o2.fillStyle = 'rgba(240,232,220,.9)'; o2.font = '600 24px Inter, sans-serif'; o2.fillText('Tu voto decide la parte 2', W / 2, 935); o2.restore();
+  }
+}
 /* ---------- shots ---------- */
 function exterior(t, fogD) { ext.fog.density = fogD; mistTex.offset.set(t * .004, t * .002); updateMoths(t); MISTS.forEach(m => { m.position.x = ((m.userData.x + t * m.userData.sp + 60) % 120 + 120) % 120 - 60; }); }
 function render(t) {
@@ -406,6 +477,7 @@ function render(t) {
   hideAll(); standDaniel(); let scene = ext; let black = 0;
   TRUCK.setLights(true); TRUCK.cab.intensity = .8; ghLight.intensity = 0; ghDoor.rotation.y = 0; setLamps(t, -1); setWindows(.8);
   drawClock(towerTex.userData.ctx, 2, 58, 0); towerTex.needsUpdate = true;
+  if (ev.poll != null && t >= ev.poll && t < ev.card) { pollScene(t); if (DANIEL.root.parent !== ext) ext.add(DANIEL.root); if (ABUELA.root.parent !== ext) ext.add(ABUELA.root); return; }
   if (t >= ev.card) { // end card over the sleeping village
     exterior(t, .009); const kk = (t - ev.card) / (TL.total - ev.card); setWindows(0); truckAt(0, t, false); TRUCK.setLights(false);
     cam(-55 + kk * 6, 30, 70, 5, 4, -10, 50); shadowAt(0, 0); renderer.render(ext, camera); post(t, .35); endCardText(kk); return;
