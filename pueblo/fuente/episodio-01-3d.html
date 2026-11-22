@@ -48,58 +48,83 @@ function drawClock(x, h, m, s) {
 }
 
 /* ---------- characters ---------- */
+function headGeo(r, age) {
+  const g = new THREE.IcosahedronGeometry(r, 2), p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    let x = p.getX(i) / r, y = p.getY(i) / r, z = p.getZ(i) / r;
+    if (y < -.15) x *= lerp(1, .7, clamp((-.15 - y) / .85));            // jaw narrows
+    if (y < -.55 && z > .2) z += .05;                                     // chin
+    if (z < -.2) z *= .9;                                                 // flatter back
+    if (Math.abs(y) < .2 && Math.abs(x) > .55 && z > 0) x *= 1.05;      // cheekbones
+    if (y > .12 && y < .36 && z > .6) z += .05;                           // brow ridge
+    if (y > -.05 && y < .2 && Math.abs(x) > .18 && Math.abs(x) < .58 && z > .65) z -= .05; // eye sockets
+    if (Math.abs(x) < .16 && y > -.4 && y < .1 && z > .78) z += .16 * (1 - Math.abs(x) / .16) * (1 - Math.abs(y + .15) / .3); // nose
+    if (age && y < -.1 && y > -.5 && Math.abs(x) > .3 && z > .4) z -= age; // sunken cheeks
+    p.setXYZ(i, x * r, y * r * 1.17, z * r * 1.05);
+  }
+  g.computeVertexNormals(); return g;
+}
 function makeChar(o) {
   const s = o.h / 1.75, P = {}, root = new THREE.Group();
   const hips = grp(root, 0, .95 * s, 0); P.hips = hips; P.hipY = .95 * s;
   for (const side of [-1, 1]) {
-    const up = grp(hips, side * .1 * s, 0, 0); mesh(jitter(Box(.17 * s, .48 * s, .18 * s), .01), M(o.pants), up, 0, -.24 * s, 0);
-    const kn = grp(up, 0, -.47 * s, 0); mesh(jitter(Box(.15 * s, .45 * s, .16 * s), .01), M(o.pants), kn, 0, -.22 * s, 0);
+    const up = grp(hips, side * .1 * s, 0, 0); mesh(jitter(new THREE.CylinderGeometry(.095 * s, .08 * s, .48 * s, 6), .01), M(o.pants), up, 0, -.24 * s, 0);
+    const kn = grp(up, 0, -.47 * s, 0); mesh(jitter(new THREE.CylinderGeometry(.078 * s, .062 * s, .45 * s, 6), .01), M(o.pants), kn, 0, -.22 * s, 0);
     mesh(Box(.14 * s, .08 * s, .27 * s), M(o.shoes), kn, 0, -.46 * s, .05 * s);
     P[side < 0 ? 'legL' : 'legR'] = { up, kn };
   }
   const torso = grp(hips, 0, 0, 0); P.torso = torso;
   const chest = mesh(jitter(new THREE.CylinderGeometry(.23 * s, .17 * s, .62 * s, 7), .02, 3), M(o.jacket), torso, 0, .31 * s, 0); chest.scale.z = .62;
-  if (o.shirt) { const sh = mesh(Box(.16 * s, .5 * s, .02), M(o.shirt), torso, 0, .3 * s, .14 * s, false); }
+  if (o.shirt) { mesh(Box(.16 * s, .5 * s, .02), M(o.shirt), torso, 0, .3 * s, .14 * s, false); for (const sd of [-1, 1]) { const c = mesh(Box(.1 * s, .14 * s, .04 * s), M(o.jacket), torso, sd * .1 * s, .6 * s, .1 * s, false); c.rotation.z = sd * .4; } }
   if (o.kind === 'abuela') {
     const sk = mesh(jitter(new THREE.CylinderGeometry(.19 * s, .32 * s, .86 * s, 8), .02, 5), M(o.skirt), hips, 0, -.43 * s, 0); sk.scale.z = .8;
     const shawl = mesh(jitter(new THREE.CylinderGeometry(.2 * s, .31 * s, .34 * s, 8), .02, 6), M(o.shawl), torso, 0, .5 * s, 0); shawl.scale.z = .75;
   }
   for (const side of [-1, 1]) {
     const sh = grp(torso, side * .25 * s, .57 * s, 0);
-    mesh(jitter(Box(.12 * s, .33 * s, .12 * s), .01), M(o.kind === 'abuela' ? o.shawl : o.jacket), sh, 0, -.16 * s, 0);
-    const el = grp(sh, 0, -.32 * s, 0); mesh(jitter(Box(.11 * s, .3 * s, .11 * s), .01), M(o.kind === 'abuela' ? o.blouse : o.jacket), el, 0, -.15 * s, 0);
-    const hand = grp(el, 0, -.32 * s, 0); mesh(jitter(Box(.085 * s, .11 * s, .06 * s), .01), M(o.skin), hand, 0, -.02 * s, 0);
+    mesh(jitter(new THREE.CylinderGeometry(.068 * s, .058 * s, .33 * s, 6), .01), M(o.kind === 'abuela' ? o.shawl : o.jacket), sh, 0, -.16 * s, 0);
+    const el = grp(sh, 0, -.32 * s, 0); mesh(jitter(new THREE.CylinderGeometry(.056 * s, .046 * s, .3 * s, 6), .01), M(o.kind === 'abuela' ? o.blouse : o.jacket), el, 0, -.15 * s, 0);
+    const hand = grp(el, 0, -.32 * s, 0); mesh(jitter(Box(.08 * s, .1 * s, .045 * s), .008), M(o.skin), hand, 0, -.03 * s, 0); mesh(Box(.025 * s, .06 * s, .025 * s), M(o.skin), hand, side * .045 * s, -.01 * s, .02 * s).rotation.z = side * .5;
     P[side < 0 ? 'armL' : 'armR'] = { sh, el, hand };
   }
   const neck = grp(torso, 0, .62 * s, 0); mesh(Box(.09 * s, .1 * s, .09 * s), M(o.skin), neck, 0, .03 * s, 0);
   const head = grp(neck, 0, .1 * s, 0); P.head = head;
-  const skull = mesh(jitter(new THREE.IcosahedronGeometry(.135 * s, 1), .012 * s, o.seed || 2), M(o.skin), head, 0, .13 * s, 0); skull.scale.set(1, 1.17, 1.05);
+  const r = .135 * s;
+  const skull = mesh(headGeo(r, o.kind === 'abuela' ? .08 : 0), M(o.skin), head, 0, .13 * s, 0);
   const F = grp(head, 0, .13 * s, 0); P.face = F;
-  const z = .132 * s;
   P.lids = []; P.pupils = [];
   for (const side of [-1, 1]) {
-    mesh(Box(.042 * s, .022 * s, .012 * s), M('#d9d2c6'), F, side * .05 * s, .02 * s, z, false);
-    P.pupils.push(mesh(Box(.02 * s, .022 * s, .01 * s), M('#120a06'), F, side * .05 * s, .02 * s, z + .006 * s, false));
-    const lid = mesh(Box(.05 * s, .03 * s, .012 * s), M(o.skin), F, side * .05 * s, .04 * s, z + .012 * s, false); lid.scale.y = .25; P.lids.push(lid);
-    const brow = mesh(Box(.065 * s, .016 * s, .018 * s), M(o.brow || o.hair), F, side * .052 * s, .058 * s, z + .004 * s, false); brow.rotation.z = side * (o.worry || .12);
-    mesh(Box(.025 * s, .05 * s, .03 * s), M(o.skin), F, side * .138 * s, .0, 0, false);
+    const ex = side * .38 * r, ey = .1 * r, ez = .9 * r;
+    const wht = mesh(new THREE.SphereGeometry(.12 * r, 8, 6), M('#e6dfd2', { flatShading: false, roughness: .4 }), F, ex, ey, ez, false); wht.scale.set(1.25, .8, .55);
+    const ir = grp(F, ex, ey, ez + .06 * r);
+    const iris = mesh(new THREE.CylinderGeometry(.065 * r, .065 * r, .01 * r, 10), M(o.iris || '#4a2c18', { roughness: .3 }), ir, 0, 0, 0, false); iris.rotation.x = Math.PI / 2;
+    const pup = mesh(new THREE.CylinderGeometry(.033 * r, .033 * r, .012 * r, 8), M('#080504'), ir, 0, 0, .004 * r, false); pup.rotation.x = Math.PI / 2;
+    mesh(Box(.022 * r, .022 * r, .01 * r), new THREE.MeshBasicMaterial({ color: '#ffffff' }), ir, .025 * r, .025 * r, .011 * r, false);
+    P.pupils.push(ir);
+    const lid = mesh(new THREE.SphereGeometry(.135 * r, 8, 4, 0, Math.PI * 2, 0, Math.PI / 2), M(o.skin), F, ex, ey + .005 * r, ez + .005 * r, false); lid.scale.set(1.25, .25, .62); P.lids.push(lid);
+    mesh(Box(.2 * r, .012 * r, .02 * r), M('#2a1a12'), F, ex, ey - .085 * r, ez + .05 * r, false).rotation.z = side * -.05; // lower lash shadow
+    const brow = mesh(jitter(Box(.3 * r, .065 * r, .07 * r), .01 * r), M(o.brow || o.hair), F, side * .38 * r, .3 * r, 1.0 * r, false); brow.rotation.z = side * (o.worry || .12); brow.rotation.x = -.2; P['brow' + side] = brow;
+    const ear = mesh(jitter(new THREE.SphereGeometry(.17 * r, 5, 4), .02 * r), M(o.skin), F, side * .98 * r, .02 * r, -.05 * r); ear.scale.set(.45, 1, .75);
   }
-  const nose = mesh(new THREE.ConeGeometry(.022 * s, .055 * s, 4), M(o.skin), F, 0, -.015 * s, z + .012 * s, false); nose.rotation.x = Math.PI / 2 + .3;
-  P.mouth = mesh(Box(.062 * s, .012 * s, .012 * s), M('#3a1410'), F, 0, -.066 * s, z - .002 * s, false); P.mouthY = -.066 * s; P.s = s;
+  const lipM = M(o.lip || '#8a4a3c');
+  P.mouth = mesh(Box(.32 * r, .035 * r, .03 * r), M('#2a0e0a'), F, 0, -.5 * r, .955 * r, false);
+  P.lipU = mesh(jitter(Box(.36 * r, .055 * r, .06 * r), .008 * r), lipM, F, 0, -.46 * r, .975 * r, false);
+  P.lipD = mesh(jitter(Box(.32 * r, .065 * r, .06 * r), .008 * r), lipM, F, 0, -.545 * r, .96 * r, false);
+  P.mouthY = -.5 * r; P.lipDY = -.545 * r; P.s = s; P.r = r;
+  if (o.kind === 'abuela') for (const side of [-1, 1]) { mesh(Box(.22 * r, .012 * r, .02 * r), M('#8a5a48'), F, side * .38 * r, -.07 * r, .93 * r, false); mesh(Box(.012 * r, .2 * r, .02 * r), M('#9a6a54'), F, side * .3 * r, -.42 * r, .9 * r, false); }
   if (o.kind === 'daniel') {
     const hairM = M(o.hair);
     const cap = mesh(jitter(new THREE.IcosahedronGeometry(.15 * s, 1), .02 * s, 9), hairM, head, 0, .2 * s, -.02 * s); cap.scale.set(1.04, .72, 1.08);
     for (let i = 0; i < 9; i++) { const sp = mesh(new THREE.ConeGeometry(.04 * s, .12 * s, 4), hairM, head, (R() - .5) * .22 * s, .25 * s + R() * .03 * s, (R() - .3) * .2 * s, false); sp.rotation.set((R() - .5) * 1.4, R() * 3, (R() - .5) * 1.6); }
-    mesh(Box(.07 * s, .03 * s, .03 * s), M('#1e1612'), F, 0, -.105 * s, z - .01 * s, false);   // goatee
-    mesh(Box(.075 * s, .012 * s, .02 * s), M('#1e1612'), F, 0, -.048 * s, z, false);           // mustache
+    mesh(jitter(Box(.3 * r, .2 * r, .12 * r), .015 * r), M('#1e1612'), F, 0, -.74 * r, .8 * r, false);   // goatee
+    mesh(jitter(Box(.42 * r, .06 * r, .06 * r), .01 * r), M('#1e1612'), F, 0, -.4 * r, 1.0 * r, false);    // mustache
     const stub = mesh(jitter(new THREE.IcosahedronGeometry(.128 * s, 1), .01 * s, 4), M('#5a4234', { transparent: true, opacity: .35 }), head, 0, .1 * s, .012 * s, false); stub.scale.set(1, .7, 1.05);
   }
   if (o.kind === 'abuela') {
     const hairM = M(o.hair);
     const cap = mesh(jitter(new THREE.IcosahedronGeometry(.148 * s, 1), .015 * s, 12), hairM, head, 0, .19 * s, -.025 * s); cap.scale.set(1.05, .78, 1.08);
     mesh(jitter(new THREE.IcosahedronGeometry(.07 * s, 0), .01 * s, 13), hairM, head, 0, .17 * s, -.15 * s);
-    for (const side of [-1, 1]) mesh(Box(.07 * s, .008 * s, .01 * s), M('#8a5a48'), F, side * .05 * s, -.0 * s, z - .002 * s, false);
-  }
+      }
   if (o.kind === 'vecino') {
     mesh(jitter(new THREE.IcosahedronGeometry(.145 * s, 1), .02 * s, 15), M(o.hair), head, 0, .19 * s, -.02 * s).scale.set(1.04, .7, 1.08);
     const brim = mesh(jitter(new THREE.CylinderGeometry(.33 * s, .35 * s, .03 * s, 9), .02 * s, 16), M('#b89a5a'), head, 0, .27 * s, 0);
@@ -120,12 +145,13 @@ function pose(C, st = {}) {
   const arm = (A, side, def) => { const a = Object.assign({ x: def, z: side * .08, el: -.15, y: 0 }, st[side < 0 ? 'armL' : 'armR'] || {}); A.sh.rotation.set(a.x, a.y, a.z); A.el.rotation.set(a.el, 0, 0); };
   arm(P.armL, -1, ph != null ? sw * .9 : .05); arm(P.armR, 1, ph != null ? -sw * .9 : .05);
   P.head.rotation.set((st.pitch || 0) + (st.sob ? Math.sin((st.t || 0) * 13) * .03 : 0), st.yaw || 0, st.roll || 0);
-  const open = clamp(st.mouth || 0); P.mouth.scale.set(1 - open * .15, 1 + open * 4.5, 1); P.mouth.position.y = P.mouthY - open * .012 * s;
-  const bl = clamp(st.blink || 0); for (const l of P.lids) { l.scale.y = .2 + bl * 1.0; l.position.y = (.038 - bl * .016) * s; }
-  const look = st.look || 0; for (const p of P.pupils) p.position.x = Math.sign(p.position.x) * .05 * s + look * .012 * s;
+  const open = clamp(st.mouth || 0), r = P.r; P.mouth.scale.set(1 - open * .2, 1 + open * 3.2, 1); P.mouth.position.y = P.mouthY - open * .07 * r; P.lipD.position.y = P.lipDY - open * .16 * r;
+  const bl = clamp(st.blink || 0); for (const l of P.lids) l.scale.y = .25 + bl * 1.1;
+  const look = st.look || 0; for (const p of P.pupils) p.position.x = Math.sign(p.position.x) * .38 * r + look * .05 * r;
+  if (st.worry != null) { P['brow-1'].rotation.z = -.12 - st.worry * .25; P.brow1.rotation.z = .12 + st.worry * .25; }
 }
-const DANIEL = makeChar({ kind: 'daniel', h: 1.78, skin: '#c08a66', hair: '#141010', jacket: '#4a5634', shirt: '#151515', pants: '#1c1d22', shoes: '#2a1e16', seed: 3, worry: .2 });
-const ABUELA = makeChar({ kind: 'abuela', h: 1.52, skin: '#c49478', hair: '#b9b6b0', brow: '#8a8680', jacket: '#d9c7a4', blouse: '#d9c7a4', shawl: '#3a302c', skirt: '#4a3a32', pants: '#3a2e28', shoes: '#241a14', seed: 8, worry: -.18 });
+const DANIEL = makeChar({ kind: 'daniel', h: 1.78, iris: '#3a2214', lip: '#8e5444', skin: '#c08a66', hair: '#141010', jacket: '#4a5634', shirt: '#151515', pants: '#1c1d22', shoes: '#2a1e16', seed: 3, worry: .2 });
+const ABUELA = makeChar({ kind: 'abuela', h: 1.52, iris: '#4e3a28', lip: '#9a6252', skin: '#c49478', hair: '#b9b6b0', brow: '#8a8680', jacket: '#d9c7a4', blouse: '#d9c7a4', shawl: '#3a302c', skirt: '#4a3a32', pants: '#3a2e28', shoes: '#241a14', seed: 8, worry: -.18 });
 const VECINO = makeChar({ kind: 'vecino', h: 1.7, skin: '#b07c5a', hair: '#141010', jacket: '#d8d4ca', pants: '#3b3a36', shoes: '#2a1e16', seed: 5 });
 
 /* ---------- props ---------- */
@@ -250,6 +276,42 @@ scatter(600, pineGeo, M('#1d2e22'), (x, z) => offStreet(x, z) && Math.hypot(x - 
 scatter(600, () => { const a = new THREE.CylinderGeometry(.12, .16, 2.2, 5); a.translate(0, 1.1, 0); return a; }, M('#2a1e16'), (x, z) => false, () => 1);
 scatter(500, () => { const a = new THREE.ConeGeometry(.18, 1.1, 3); a.translate(0, .5, 0); return a; }, M('#8a7a46'), (x, z) => { const d = roadDist(x, z)[0]; return d > 3.5 && d < 12 || (Math.abs(z) > 10 && Math.abs(z) < 16 && Math.abs(x) < 70); }, () => .8 + R() * .8);
 scatter(140, () => { const a = new THREE.ConeGeometry(.35, 1.2, 4); a.translate(0, .55, 0); a.rotateZ(.5); return jitter(a, .05); }, M('#3e5a48'), (x, z) => { const d = roadDist(x, z)[0]; return d > 4 && d < 16; }, () => 1 + R());
+// black street dog (glowing eyes)
+function makeDog() {
+  const g = new THREE.Group(), fur = M('#151416'), P = {};
+  const body = mesh(jitter(new THREE.CylinderGeometry(.16, .14, .62, 6), .02), fur, g, 0, .5, 0); body.rotation.x = Math.PI / 2;
+  P.neck = grp(g, 0, .58, .3); const hd = grp(P.neck, 0, .12, .05); P.head = hd;
+  mesh(jitter(new THREE.IcosahedronGeometry(.13, 0), .02), fur, hd, 0, 0, 0);
+  const sn = mesh(new THREE.ConeGeometry(.07, .2, 5), fur, hd, 0, -.03, .15); sn.rotation.x = Math.PI / 2;
+  P.jaw = grp(hd, 0, -.07, .06); mesh(Box(.08, .03, .16), fur, P.jaw, 0, 0, .07);
+  for (const sd of [-1, 1]) { const e = mesh(new THREE.ConeGeometry(.045, .14, 4), fur, hd, sd * .07, .14, -.02); e.rotation.z = -sd * .25; mesh(Box(.03, .02, .01), new THREE.MeshBasicMaterial({ color: '#ffb040' }), hd, sd * .05, .03, .115, false); }
+  P.eyes = [glow(hd, '#ffa030', .12, -.05, .03, .13, .9), glow(hd, '#ffa030', .12, .05, .03, .13, .9)];
+  P.legs = []; for (const [x, z] of [[-.09, .22], [.09, .22], [-.09, -.22], [.09, -.22]]) { const l = grp(g, x, .42, z); mesh(new THREE.CylinderGeometry(.035, .03, .42, 5), fur, l, 0, -.21, 0); P.legs.push(l); }
+  P.tail = grp(g, 0, .55, -.3); const tl = mesh(new THREE.ConeGeometry(.03, .3, 4), fur, P.tail, 0, .1, -.08); tl.rotation.x = -.9;
+  g.traverse(m => { if (m.isMesh) m.castShadow = true; }); return { g, P };
+}
+const DOG = makeDog(); ext.add(DOG.g);
+function poseDog(st) { const P = DOG.P, ph = st.run; P.legs.forEach((l, i) => l.rotation.x = st.sit ? (i > 1 ? -1.3 : 0) : ph != null ? Math.sin(ph + (i % 2 ? 0 : Math.PI) + (i > 1 ? 1.2 : 0)) * .8 : 0); DOG.g.children[0].rotation.z = 0; DOG.g.position.y = st.sit ? -.12 : 0; P.neck.rotation.x = st.sit ? -.5 : (ph != null ? .2 : 0); P.head.rotation.y = st.yaw || 0; P.jaw.rotation.x = st.bark || 0; P.tail.rotation.x = st.sit ? .6 : (ph != null ? -.4 : .2); }
+// hooded figure for the cliffhanger (original design: tall, gaunt, cloaked)
+function makeFigure() {
+  const g = new THREE.Group(), cloth = M('#07080b', { roughness: 1 }), P = {};
+  const robe = mesh(jitter(new THREE.CylinderGeometry(.22, .55, 2.0, 7), .05), cloth, g, 0, 1.0, 0); robe.scale.z = .7;
+  mesh(jitter(new THREE.CylinderGeometry(.3, .24, .7, 7), .04), cloth, g, 0, 2.2, 0).scale.z = .7;
+  for (const sd of [-1, 1]) { const a = grp(g, sd * .32, 2.45, 0); a.rotation.z = sd * .08; mesh(new THREE.CylinderGeometry(.06, .04, 1.25, 5), cloth, a, 0, -.62, 0); mesh(Box(.05, .26, .04), M('#5a6a78'), a, 0, -1.35, 0); }
+  P.head = grp(g, 0, 2.62, 0);
+  const hood = mesh(jitter(new THREE.IcosahedronGeometry(.24, 1), .04), cloth, P.head, 0, .12, -.03); hood.scale.set(1, 1.35, 1.1);
+  mesh(new THREE.SphereGeometry(.15, 6, 5), M('#1a2028'), P.head, 0, .08, .1).scale.set(.9, 1.25, .6);
+  P.eyes = [glow(P.head, '#ff8a2a', .26, -.055, .12, .2, 0), glow(P.head, '#ff8a2a', .26, .055, .12, .2, 0)];
+  P.eyeMesh = [mesh(Box(.035, .02, .01), new THREE.MeshBasicMaterial({ color: '#ffb060', transparent: true, opacity: 0 }), P.head, -.055, .12, .19, false), mesh(Box(.035, .02, .01), new THREE.MeshBasicMaterial({ color: '#ffb060', transparent: true, opacity: 0 }), P.head, .055, .12, .19, false)];
+  g.traverse(m => { if (m.isMesh) m.castShadow = true; }); return { g, P };
+}
+const FIG = makeFigure(); ext.add(FIG.g); FIG.g.visible = false;
+// moths around the lamps
+const MOTHS = (() => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(4 * 14 * 3), 3)); const m = new THREE.Points(g, new THREE.PointsMaterial({ color: '#fff0c8', size: 2.2, sizeAttenuation: false, fog: false })); ext.add(m); return m; })();
+function updateMoths(t) { const p = MOTHS.geometry.attributes.position; let i = 0; LAMPS.forEach((L, li) => { for (let k = 0; k < 14; k++) { const a = t * (2 + k * .3) + k * 1.7 + li, r = .25 + (k % 4) * .12; p.setXYZ(i++, L.pl.position.x + Math.cos(a) * r, L.pl.position.y + Math.sin(a * 1.7) * .25, L.pl.position.z + Math.sin(a) * r); } }); p.needsUpdate = true; }
+// drifting mist banks
+const MISTS = []; for (let i = 0; i < 26; i++) { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: mistTexS(), color: '#a8b8d8', transparent: true, opacity: .22, depthWrite: false })); const x = (R() - .5) * 120, z = (R() - .5) * 14; sp.position.set(x, .8 + R() * 1.2, z); sp.scale.set(14 + R() * 10, 4 + R() * 3, 1); sp.userData = { x, sp: .3 + R() * .5 }; ext.add(sp); MISTS.push(sp); }
+function mistTexS() { if (mistTexS.t) return mistTexS.t; mistTexS.t = canvasTex(256, 128, x => { for (let i = 0; i < 26; i++) { const gx = 40 + Math.random() * 176, gy = 40 + Math.random() * 48, r = 20 + Math.random() * 40; const gr = x.createRadialGradient(gx, gy, 0, gx, gy, r); gr.addColorStop(0, 'rgba(255,255,255,.35)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = gr; x.fillRect(0, 0, 256, 128); } }); return mistTexS.t; }
 const TRUCK = makeTruck(); ext.add(TRUCK.g);
 ext.add(DANIEL.root, ABUELA.root, VECINO.root);
 const fogPlanes = []; // drifting ground mist
@@ -294,10 +356,11 @@ function speaking(who, t) { const v = TL.voices.find(x => x.who === who && t >= 
 function blinkAt(t, seed) { const p = 3.1 + seed * .37, ph = (t + seed * 1.3) % p; return ph < .15 ? Math.sin(ph / .15 * Math.PI) : 0; }
 const flick = (t, k = 1) => .78 + .12 * Math.sin(t * 13 * k) + .07 * Math.sin(t * 31 * k + 1) + .05 * Math.sin(t * 7.3 * k);
 function shakeAt(t, t0, a) { const k = t - t0; if (k < 0 || k > .5) return 0; return Math.sin(k * 80) * a * (1 - k / .5); }
-function cam(px, py, pz, lx, ly, lz, fov = 55, roll = 0) { camera.position.set(px, py, pz); camera.lookAt(lx, ly, lz); camera.rotateZ(roll); camera.fov = fov; camera.updateProjectionMatrix(); }
+let NOW = 0;
+function cam(px, py, pz, lx, ly, lz, fov = 55, roll = 0) { const a = .004 * fov / 40; camera.position.set(px + Math.sin(NOW * .9) * a, py + Math.sin(NOW * 1.3 + 1) * a, pz); camera.lookAt(lx + Math.sin(NOW * .7 + 2) * a * 2, ly + Math.sin(NOW * 1.1) * a * 1.5, lz); roll += Math.sin(NOW * .5) * .004; camera.rotateZ(roll); camera.fov = fov; camera.updateProjectionMatrix(); }
 function camL(a, b, k, fov = 55) { cam(lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k), lerp(a[3], b[3], k), lerp(a[4], b[4], k), lerp(a[5], b[5], k), fov); }
 function place(C, x, y, z, ry) { C.root.position.set(x, y, z); C.root.rotation.set(0, ry, 0); C.root.visible = true; }
-function hideAll() { for (const C of [DANIEL, ABUELA, VECINO]) C.root.visible = false; PHONE.g.parent && PHONE.g.parent.remove(PHONE.g); }
+function hideAll() { for (const C of [DANIEL, ABUELA, VECINO]) C.root.visible = false; DOG.g.visible = false; FIG.g.visible = false; PHONE.g.parent && PHONE.g.parent.remove(PHONE.g); }
 function truckAt(u, t, moving, bounce = 1) {
   u = clamp(u, 0, 1); const p = ROAD.getPointAt(u), tg = ROAD.getTangentAt(u).negate();
   TRUCK.g.position.set(p.x, p.y + (moving ? Math.sin(t * 17) * .02 * bounce : 0), p.z); TRUCK.g.rotation.set(0, Math.atan2(tg.x, tg.z), 0);
@@ -328,14 +391,16 @@ function endCardText(k) {
   o2.fillStyle = `rgba(190,40,40,${a(0)})`; o2.fillRect(W / 2 - 80, 605, 160, 3);
   o2.fillStyle = `rgba(236,228,214,${a(1)})`; o2.font = '600 30px Cinzel, serif'; if ('letterSpacing' in o2) o2.letterSpacing = '7px'; o2.fillText('EPISODIO 01', W / 2, 665); o2.fillText('LA LLEGADA', W / 2, 712);
   o2.fillStyle = `rgba(236,228,214,${a(2)})`; o2.font = '600 38px Cinzel, serif'; o2.fillText('CONTINUARÁ...', W / 2, 840);
-  if ('letterSpacing' in o2) o2.letterSpacing = '2px'; o2.fillStyle = `rgba(255,255,255,${a(3)})`; o2.font = '800 27px Inter, sans-serif'; o2.fillText('SUSCRÍBETE PARA VER LA PARTE 2', W / 2, 1010);
+  if ('letterSpacing' in o2) o2.letterSpacing = '0px'; o2.shadowBlur = 0;
+  o2.globalAlpha = a(3); o2.fillStyle = '#d62d2d'; o2.beginPath(); o2.roundRect(W / 2 - 250, 965, 500, 92, 46); o2.fill();
+  o2.fillStyle = '#ffffff'; o2.font = '700 34px Inter, sans-serif'; o2.fillText('Suscríbete para ver la parte 2', W / 2, 1012); o2.globalAlpha = 1;
   o2.restore();
 }
 
 /* ---------- shots ---------- */
-function exterior(t, fogD) { ext.fog.density = fogD; mistTex.offset.set(t * .004, t * .002); }
+function exterior(t, fogD) { ext.fog.density = fogD; mistTex.offset.set(t * .004, t * .002); updateMoths(t); MISTS.forEach(m => { m.position.x = ((m.userData.x + t * m.userData.sp + 60) % 120 + 120) % 120 - 60; }); }
 function render(t) {
-  const C = TL.clips, ev = TL.ev;
+  NOW = t; const C = TL.clips, ev = TL.ev;
   const ci = C.findIndex(c => t >= c.start && t < c.end), c = ci >= 0 ? C[ci] : C[C.length - 1];
   const lt = t - c.start, k = clamp(lt / (c.end - c.start));
   hideAll(); standDaniel(); let scene = ext; let black = 0;
@@ -351,6 +416,9 @@ function render(t) {
     case 'street': { exterior(t, .028); const e = ease(k);
       const secs = lerp(20, 59.8, k); drawClock(towerTex.userData.ctx, 2, 59, secs); towerTex.needsUpdate = true; setWindows(clamp(.8 - k * 1.2));
       truckAt(.95, t, false); TRUCK.setLights(false);
+      { const run = clamp((lt - 4.3) / 2.2); DOG.g.visible = true; DOG.g.position.set(lerp(-13.5, -4, run), 0, lerp(-1.2, -2.6, run)); DOG.g.rotation.y = run > 0 ? Math.atan2(9.5, -2.8) : -1.9;
+        const barkT = [1.2, 1.55, 2.6, 2.95]; let bark = 0; for (const bt of barkT) { const d = lt - bt; if (d > 0 && d < .22) bark = Math.sin(d / .22 * Math.PI) * .5; }
+        poseDog({ sit: run <= 0, run: run > 0 ? lt * 16 : null, yaw: run > 0 ? 0 : (lt < 1 ? 0 : -.6 + Math.sin(lt) * .2), bark }); }
       const wk = clamp((lt - 2.3) / 3.2); if (wk > 0 && wk < 1) { place(VECINO, lerp(-17, -10.5, wk), 0, lerp(2.6, -3.3, wk), Math.atan2(6.5, -5.9)); pose(VECINO, { walk: lt * 12, stride: 1.2, t, lean: .15, yaw: wk < .4 ? .5 : 0 }); }
       cam(lerp(-22, -14, e), lerp(1.7, 2.0, e), lerp(2.2, 1.6, e), lerp(-10, -6.5, e), lerp(3.5, 10.8, e), lerp(-6, -14, e), lerp(58, 44, e)); shadowAt(-12, 0); break; }
     case 'road': { exterior(t, .02); const u = lerp(.62, .5, k); truckAt(u, t, true); TRUCK.cab.intensity = .5;
@@ -411,12 +479,12 @@ function render(t) {
       const fl = flick(t, .8); candleL.intensity = 9 * fl; fillL.intensity = 2.5 * fl; CANDLES.forEach((cd, i) => { cd.f.scale.y = .8 + .4 * flick(t + i, 1.3); cd.s.material.opacity = .7 + .3 * fl; });
       let sh = 0; for (const kt of kn) sh += shakeAt(t, kt, .06); inDoor.rotation.y = sh; inDoor.position.x = sh * .3;
       let dustA = 0; for (const kt of kn) { const d = t - kt; if (d > 0 && d < 2.5) dustA = Math.max(dustA, 1 - d / 2.5); } dustP.material.opacity = dustA; dustP.position.y = -((t - kn[0]) % 2.5) * .4;
-      ext.remove(DANIEL.root); inn.add(DANIEL.root); inn.add(ABUELA.root);
+      if (!(c.name === 'final' && t >= ev.figure)) { ext.remove(DANIEL.root); inn.add(DANIEL.root); inn.add(ABUELA.root); }
       const grab = c.name === 'warn' ? clamp((lt - .2) / .9) : 1, freeze = c.name === 'final' && t > ev.flip;
       const sob = c.name === 'final' && t > kn[0];
       const turn = c.name === 'final' ? clamp((t - a4.end - .3) / 2.0) : 0;
       place(ABUELA, -.45, 0, .2, Math.PI / 2); place(DANIEL, .5, 0, .2, lerp(-Math.PI / 2, Math.PI / 2 - .3, ease(turn)));
-      pose(ABUELA, { t: freeze ? 0 : t, sob, armR: { x: lerp(.05, -1.25, ease(grab)), z: lerp(-.08, .25, ease(grab)), el: lerp(-.15, -.6, ease(grab)) }, mouth: Math.max(speaking('abuela', t), sob ? .1 + .1 * Math.abs(Math.sin(t * 7)) : 0), blink: sob ? .6 + .3 * Math.sin(t * 3) : blinkAt(t, 5), pitch: .15, worry: 1 });
+      pose(ABUELA, { t: freeze ? 0 : t, sob, armL: { x: -.5 + Math.sin(t * 19) * .025, z: -.2, el: -1.2 }, armR: { x: lerp(.05, -1.25, ease(grab)) + Math.sin(t * 17) * .02, z: lerp(-.08, .25, ease(grab)), el: lerp(-.15, -.6, ease(grab)) }, mouth: Math.max(speaking('abuela', t), sob ? .1 + .1 * Math.abs(Math.sin(t * 7)) : 0), blink: sob ? .6 + .3 * Math.sin(t * 3) : blinkAt(t, 5), pitch: .15, worry: 1 });
       pose(DANIEL, { t: freeze ? 0 : t, mouth: speaking('daniel', t), blink: freeze ? 0 : blinkAt(t, 2), pitch: .2, yaw: c.name === 'final' && turn > 0 ? .3 * (1 - turn) : 0, armL: grab > .5 ? { x: -.25, z: .1, el: -.3 } : undefined });
       const w = a3.words, wi = s => (w.find(x => x[2].toLowerCase().startsWith(s)) || [a3.start])[0];
       const cuando = wi('cuando'), no = (w.filter(x => x[2].toLowerCase() === 'no')[0] || [a3.end - 1.5])[0];
@@ -433,8 +501,16 @@ function render(t) {
         else if (t < kn[2] + .8) { cam(1.6 + shakeAt(t, kn[0], .03), 1.4, .9, 3.9, 1.2, .35, 50); }
         else if (t < a4.end + .3) cam(.4, 1.58, .62, -.45, 1.55, .2, 28);
         else if (t < sus.start + 1.6) { const kk = (t - a4.end - .3) / (sus.start + 1.6 - a4.end - .3); cam(lerp(-1.2, -1.6, kk), 1.6, lerp(2.6, 2.2, kk), .9, 1.4, .1, 44); }
-        else { const kk = (t - sus.start - 1.6) / 2; const dir = DANIEL.root.rotation.y; cam(.5 + Math.sin(dir) * .75, 1.85, .2 + Math.cos(dir) * .75, .5, 1.84, .2, lerp(22, 17, kk)); }
-        black = clamp((t - ev.fade) / 1.0);
+        else if (t < ev.figure) { const kk = (t - sus.start - 1.6) / (ev.figure - sus.start - 1.6); const dir = DANIEL.root.rotation.y; cam(.5 + Math.sin(dir) * .75, 1.85, .2 + Math.cos(dir) * .75, .5, 1.84, .2, lerp(22, 16, kk)); }
+        else { // cliffhanger: the figure waiting at the door outside
+          scene = ext; exterior(t, .045); setWindows(0); setLamps(t, 2); truckAt(0, t, false); TRUCK.setLights(false, false); ghLight.intensity = 0;
+          const kk = (t - ev.figure) / (ev.fade - ev.figure); FIG.g.visible = true; FIG.g.position.set(18, 0, -2.25); FIG.g.rotation.y = Math.PI;
+          const turn = smooth(.35, .75, kk); FIG.P.head.rotation.y = turn * 2.6; FIG.P.head.rotation.x = -.1 * turn;
+          const eo = smooth(.55, .8, kk); FIG.P.eyes.forEach(e => e.material.opacity = eo); FIG.P.eyeMesh.forEach(e => e.material.opacity = eo);
+          cam(lerp(13.6, 14.6, kk), lerp(1.7, 2.0, kk), lerp(3.25, 3.0, kk), 18, lerp(2.0, 2.55, kk), -2.3, lerp(44, 28, kk));
+          if (kk > .93) black = 1;
+        }
+        black = Math.max(black, clamp((t - ev.fade) / .3));
       }
       break; }
   }
