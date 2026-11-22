@@ -5,60 +5,189 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: nar,Inter ExtraBold,64,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,6,2,2,60,60,440,1
-Style: dan,Inter ExtraBold,64,&H00B0F0C8,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,6,2,2,60,60,440,1
-Style: abu,Inter ExtraBold,64,&H00A8D9FF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,0,100,100,0,0,1,6,2,2,60,60,440,1
-Style: sus,Inter ExtraBold,64,&H00808AFF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,0,100,100,0,0,1,6,2,2,60,60,440,1
+Style: nar,Inter ExtraBold,68,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,7,2,2,60,60,430,1
+Style: dan,Inter ExtraBold,68,&H00B0F0C8,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,7,2,2,60,60,430,1
+Style: abu,Inter ExtraBold,68,&H00A8D9FF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,0,100,100,0,0,1,7,2,2,60,60,430,1
+Style: sus,Inter ExtraBold,68,&H00808AFF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,0,100,100,0,0,1,7,2,2,60,60,430,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.50,0:00:02.45,nar,,0,0,0,,{\fad(80,60)}En algún lugar de
-Dialogue: 0,0:00:02.45,0:00:04.09,nar,,0,0,0,,{\fad(80,60)}las montañas de México
-Dialogue: 0,0:00:04.09,0:00:05.29,nar,,0,0,0,,{\fad(80,60)}existe un pueblo que
-Dialogue: 0,0:00:05.29,0:00:06.30,nar,,0,0,0,,{\fad(80,60)}no aparece en los
-Dialogue: 0,0:00:06.30,0:00:07.19,nar,,0,0,0,,{\fad(80,60)}mapas
-Dialogue: 0,0:00:09.60,0:00:11.06,nar,,0,0,0,,{\fad(80,60)}Sus habitantes tienen una
-Dialogue: 0,0:00:11.06,0:00:12.05,nar,,0,0,0,,{\fad(80,60)}regla que nadie se
-Dialogue: 0,0:00:12.05,0:00:13.57,nar,,0,0,0,,{\fad(80,60)}atreve a romper jamás
-Dialogue: 0,0:00:13.57,0:00:14.66,nar,,0,0,0,,{\fad(80,60)}salir después de las
-Dialogue: 0,0:00:14.66,0:00:16.01,nar,,0,0,0,,{\fad(80,60)}tres de la madrugada
-Dialogue: 0,0:00:18.00,0:00:20.07,nar,,0,0,0,,{\fad(80,60)}Durante años nadie preguntó
-Dialogue: 0,0:00:20.07,0:00:21.96,nar,,0,0,0,,{\fad(80,60)}por qué Hasta que
-Dialogue: 0,0:00:21.96,0:00:23.77,nar,,0,0,0,,{\fad(80,60)}una noche un desconocido
-Dialogue: 0,0:00:23.77,0:00:24.92,nar,,0,0,0,,{\fad(80,60)}llegó al pueblo
-Dialogue: 0,0:00:25.62,0:00:27.83,nar,,0,0,0,,{\fad(80,60)}Su nombre era Daniel
-Dialogue: 0,0:00:27.83,0:00:29.68,nar,,0,0,0,,{\fad(80,60)}Tenía veinticuatro años y
-Dialogue: 0,0:00:29.68,0:00:30.66,nar,,0,0,0,,{\fad(80,60)}llevaba más de una
-Dialogue: 0,0:00:30.66,0:00:31.99,nar,,0,0,0,,{\fad(80,60)}década sin regresar a
-Dialogue: 0,0:00:31.99,0:00:32.98,nar,,0,0,0,,{\fad(80,60)}aquel lugar
-Dialogue: 0,0:00:34.59,0:00:36.63,dan,,0,0,0,,{\fad(80,60)}Bueno Abuela
-Dialogue: 0,0:00:36.48,0:00:39.02,abu,,0,0,0,,{\fad(80,60)}Daniel mijo ven pronto
-Dialogue: 0,0:00:39.02,0:00:41.86,abu,,0,0,0,,{\fad(80,60)}por favor Tengo miedo
-Dialogue: 0,0:00:41.86,0:00:43.43,nar,,0,0,0,,{\fad(80,60)}Había recibido una llamada
-Dialogue: 0,0:00:43.43,0:00:45.28,nar,,0,0,0,,{\fad(80,60)}de su abuela Pero
-Dialogue: 0,0:00:45.28,0:00:46.38,nar,,0,0,0,,{\fad(80,60)}había algo extraño en
-Dialogue: 0,0:00:46.38,0:00:48.02,nar,,0,0,0,,{\fad(80,60)}su voz parecía tener
-Dialogue: 0,0:00:48.02,0:00:48.79,nar,,0,0,0,,{\fad(80,60)}miedo
-Dialogue: 0,0:00:49.39,0:00:50.94,nar,,0,0,0,,{\fad(80,60)}Cuando llegó las calles
-Dialogue: 0,0:00:50.94,0:00:54.04,nar,,0,0,0,,{\fad(80,60)}estaban vacías Las ventanas
-Dialogue: 0,0:00:54.04,0:00:56.79,nar,,0,0,0,,{\fad(80,60)}cerradas Y ninguna persona
-Dialogue: 0,0:00:56.79,0:00:58.70,nar,,0,0,0,,{\fad(80,60)}parecía querer ser vista
-Dialogue: 0,0:01:04.00,0:01:06.14,dan,,0,0,0,,{\fad(80,60)}Abuela soy yo Daniel
-Dialogue: 0,0:01:06.05,0:01:09.76,abu,,0,0,0,,{\fad(80,60)}Ay mijo Sí viniste
-Dialogue: 0,0:01:09.76,0:01:10.51,nar,,0,0,0,,{\fad(80,60)}Al entrar a la
-Dialogue: 0,0:01:10.51,0:01:11.84,nar,,0,0,0,,{\fad(80,60)}casa su abuela lo
-Dialogue: 0,0:01:11.84,0:01:13.19,nar,,0,0,0,,{\fad(80,60)}recibió con lágrimas en
-Dialogue: 0,0:01:13.19,0:01:14.23,nar,,0,0,0,,{\fad(80,60)}los ojos
-Dialogue: 0,0:01:15.76,0:01:18.93,abu,,0,0,0,,{\fad(80,60)}Daniel escúchame bien Cuando
-Dialogue: 0,0:01:18.93,0:01:20.05,abu,,0,0,0,,{\fad(80,60)}el reloj marque las
-Dialogue: 0,0:01:20.05,0:01:21.45,abu,,0,0,0,,{\fad(80,60)}tres treinta y tres
-Dialogue: 0,0:01:21.45,0:01:22.86,abu,,0,0,0,,{\fad(80,60)}no abras la puerta
-Dialogue: 0,0:01:22.76,0:01:24.79,dan,,0,0,0,,{\fad(80,60)}Por qué abuela Qué
-Dialogue: 0,0:01:24.79,0:01:25.91,dan,,0,0,0,,{\fad(80,60)}hay allá afuera
-Dialogue: 0,0:01:26.41,0:01:27.42,nar,,0,0,0,,{\fad(80,60)}Pero justo cuando el
-Dialogue: 0,0:01:27.42,0:01:28.87,nar,,0,0,0,,{\fad(80,60)}reloj cambió de hora
-Dialogue: 0,0:01:28.87,0:01:30.04,nar,,0,0,0,,{\fad(80,60)}alguien llamó desde el
-Dialogue: 0,0:01:30.04,0:01:31.04,nar,,0,0,0,,{\fad(80,60)}otro lado
-Dialogue: 0,0:01:33.39,0:01:34.50,abu,,0,0,0,,{\fad(80,60)}Ya llegó
-Dialogue: 0,0:01:34.70,0:01:36.54,sus,,0,0,0,,{\fad(80,60)}Daniel sé que estás
-Dialogue: 0,0:01:36.54,0:01:37.20,sus,,0,0,0,,{\fad(80,60)}ahí
+Dialogue: 0,0:00:05.14,0:00:05.33,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}En{\r} algún lugar
+Dialogue: 0,0:00:05.33,0:00:05.62,nar,,0,0,0,,En {\c&H0000E5FF&\fscx108\fscy108}algún{\r} lugar
+Dialogue: 0,0:00:05.62,0:00:05.96,nar,,0,0,0,,En algún {\c&H0000E5FF&\fscx108\fscy108}lugar{\r}
+Dialogue: 0,0:00:05.96,0:00:06.08,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}de{\r} las montañas
+Dialogue: 0,0:00:06.08,0:00:06.28,nar,,0,0,0,,de {\c&H0000E5FF&\fscx108\fscy108}las{\r} montañas
+Dialogue: 0,0:00:06.28,0:00:06.84,nar,,0,0,0,,de las {\c&H0000E5FF&\fscx108\fscy108}montañas{\r}
+Dialogue: 0,0:00:06.84,0:00:06.91,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}de{\r} México existe
+Dialogue: 0,0:00:06.91,0:00:08.03,nar,,0,0,0,,de {\c&H0000E5FF&\fscx108\fscy108}México{\r} existe
+Dialogue: 0,0:00:08.03,0:00:08.56,nar,,0,0,0,,de México {\c&H0000E5FF&\fscx108\fscy108}existe{\r}
+Dialogue: 0,0:00:08.56,0:00:08.70,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}un{\r} pueblo que
+Dialogue: 0,0:00:08.70,0:00:09.07,nar,,0,0,0,,un {\c&H0000E5FF&\fscx108\fscy108}pueblo{\r} que
+Dialogue: 0,0:00:09.07,0:00:09.21,nar,,0,0,0,,un pueblo {\c&H0000E5FF&\fscx108\fscy108}que{\r}
+Dialogue: 0,0:00:09.21,0:00:09.45,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}no{\r} aparece en
+Dialogue: 0,0:00:09.45,0:00:09.93,nar,,0,0,0,,no {\c&H0000E5FF&\fscx108\fscy108}aparece{\r} en
+Dialogue: 0,0:00:09.93,0:00:10.01,nar,,0,0,0,,no aparece {\c&H0000E5FF&\fscx108\fscy108}en{\r}
+Dialogue: 0,0:00:10.01,0:00:10.19,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}los{\r} mapas
+Dialogue: 0,0:00:10.19,0:00:11.09,nar,,0,0,0,,los {\c&H0000E5FF&\fscx108\fscy108}mapas{\r}
+Dialogue: 0,0:00:11.84,0:00:12.12,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Sus{\r} habitantes tienen
+Dialogue: 0,0:00:12.12,0:00:12.71,nar,,0,0,0,,Sus {\c&H0000E5FF&\fscx108\fscy108}habitantes{\r} tienen
+Dialogue: 0,0:00:12.71,0:00:13.03,nar,,0,0,0,,Sus habitantes {\c&H0000E5FF&\fscx108\fscy108}tienen{\r}
+Dialogue: 0,0:00:13.03,0:00:13.21,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}una{\r} regla que
+Dialogue: 0,0:00:13.21,0:00:13.54,nar,,0,0,0,,una {\c&H0000E5FF&\fscx108\fscy108}regla{\r} que
+Dialogue: 0,0:00:13.54,0:00:13.69,nar,,0,0,0,,una regla {\c&H0000E5FF&\fscx108\fscy108}que{\r}
+Dialogue: 0,0:00:13.69,0:00:14.06,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}nadie{\r} se atreve
+Dialogue: 0,0:00:14.06,0:00:14.18,nar,,0,0,0,,nadie {\c&H0000E5FF&\fscx108\fscy108}se{\r} atreve
+Dialogue: 0,0:00:14.18,0:00:14.53,nar,,0,0,0,,nadie se {\c&H0000E5FF&\fscx108\fscy108}atreve{\r}
+Dialogue: 0,0:00:14.53,0:00:14.58,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}a{\r} romper jamás
+Dialogue: 0,0:00:14.58,0:00:15.60,nar,,0,0,0,,a {\c&H0000E5FF&\fscx108\fscy108}romper{\r} jamás
+Dialogue: 0,0:00:15.60,0:00:16.01,nar,,0,0,0,,a romper {\c&H0000E5FF&\fscx108\fscy108}jamás{\r}
+Dialogue: 0,0:00:16.01,0:00:16.40,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}salir{\r} después de
+Dialogue: 0,0:00:16.40,0:00:16.86,nar,,0,0,0,,salir {\c&H0000E5FF&\fscx108\fscy108}después{\r} de
+Dialogue: 0,0:00:16.86,0:00:16.96,nar,,0,0,0,,salir después {\c&H0000E5FF&\fscx108\fscy108}de{\r}
+Dialogue: 0,0:00:16.96,0:00:17.16,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}las{\r} tres de
+Dialogue: 0,0:00:17.16,0:00:17.44,nar,,0,0,0,,las {\c&H0000E5FF&\fscx108\fscy108}tres{\r} de
+Dialogue: 0,0:00:17.44,0:00:17.53,nar,,0,0,0,,las tres {\c&H0000E5FF&\fscx108\fscy108}de{\r}
+Dialogue: 0,0:00:17.53,0:00:17.64,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}la{\r} madrugada
+Dialogue: 0,0:00:17.64,0:00:18.67,nar,,0,0,0,,la {\c&H0000E5FF&\fscx108\fscy108}madrugada{\r}
+Dialogue: 0,0:00:19.27,0:00:19.74,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Durante{\r} años nadie
+Dialogue: 0,0:00:19.74,0:00:20.39,nar,,0,0,0,,Durante {\c&H0000E5FF&\fscx108\fscy108}años{\r} nadie
+Dialogue: 0,0:00:20.39,0:00:20.76,nar,,0,0,0,,Durante años {\c&H0000E5FF&\fscx108\fscy108}nadie{\r}
+Dialogue: 0,0:00:20.76,0:00:21.26,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}preguntó{\r} por qué
+Dialogue: 0,0:00:21.26,0:00:21.47,nar,,0,0,0,,preguntó {\c&H0000E5FF&\fscx108\fscy108}por{\r} qué
+Dialogue: 0,0:00:21.47,0:00:22.31,nar,,0,0,0,,preguntó por {\c&H0000E5FF&\fscx108\fscy108}qué{\r}
+Dialogue: 0,0:00:22.31,0:00:22.68,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Hasta{\r} que una
+Dialogue: 0,0:00:22.68,0:00:22.83,nar,,0,0,0,,Hasta {\c&H0000E5FF&\fscx108\fscy108}que{\r} una
+Dialogue: 0,0:00:22.83,0:00:23.07,nar,,0,0,0,,Hasta que {\c&H0000E5FF&\fscx108\fscy108}una{\r}
+Dialogue: 0,0:00:23.07,0:00:24.02,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}noche{\r} un desconocido
+Dialogue: 0,0:00:24.02,0:00:24.18,nar,,0,0,0,,noche {\c&H0000E5FF&\fscx108\fscy108}un{\r} desconocido
+Dialogue: 0,0:00:24.18,0:00:24.92,nar,,0,0,0,,noche un {\c&H0000E5FF&\fscx108\fscy108}desconocido{\r}
+Dialogue: 0,0:00:24.92,0:00:25.23,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}llegó{\r} al pueblo
+Dialogue: 0,0:00:25.23,0:00:25.35,nar,,0,0,0,,llegó {\c&H0000E5FF&\fscx108\fscy108}al{\r} pueblo
+Dialogue: 0,0:00:25.35,0:00:26.14,nar,,0,0,0,,llegó al {\c&H0000E5FF&\fscx108\fscy108}pueblo{\r}
+Dialogue: 0,0:00:26.74,0:00:27.00,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Su{\r} nombre era
+Dialogue: 0,0:00:27.00,0:00:27.38,nar,,0,0,0,,Su {\c&H0000E5FF&\fscx108\fscy108}nombre{\r} era
+Dialogue: 0,0:00:27.38,0:00:27.56,nar,,0,0,0,,Su nombre {\c&H0000E5FF&\fscx108\fscy108}era{\r}
+Dialogue: 0,0:00:27.56,0:00:28.45,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Daniel{\r} Tenía veinticuatro
+Dialogue: 0,0:00:28.45,0:00:28.79,nar,,0,0,0,,Daniel {\c&H0000E5FF&\fscx108\fscy108}Tenía{\r} veinticuatro
+Dialogue: 0,0:00:28.79,0:00:29.47,nar,,0,0,0,,Daniel Tenía {\c&H0000E5FF&\fscx108\fscy108}veinticuatro{\r}
+Dialogue: 0,0:00:29.47,0:00:30.09,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}años{\r} y llevaba
+Dialogue: 0,0:00:30.09,0:00:30.19,nar,,0,0,0,,años {\c&H0000E5FF&\fscx108\fscy108}y{\r} llevaba
+Dialogue: 0,0:00:30.19,0:00:30.56,nar,,0,0,0,,años y {\c&H0000E5FF&\fscx108\fscy108}llevaba{\r}
+Dialogue: 0,0:00:30.56,0:00:30.81,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}más{\r} de una
+Dialogue: 0,0:00:30.81,0:00:30.91,nar,,0,0,0,,más {\c&H0000E5FF&\fscx108\fscy108}de{\r} una
+Dialogue: 0,0:00:30.91,0:00:31.11,nar,,0,0,0,,más de {\c&H0000E5FF&\fscx108\fscy108}una{\r}
+Dialogue: 0,0:00:31.11,0:00:31.52,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}década{\r} sin regresar
+Dialogue: 0,0:00:31.52,0:00:31.76,nar,,0,0,0,,década {\c&H0000E5FF&\fscx108\fscy108}sin{\r} regresar
+Dialogue: 0,0:00:31.76,0:00:32.30,nar,,0,0,0,,década sin {\c&H0000E5FF&\fscx108\fscy108}regresar{\r}
+Dialogue: 0,0:00:32.30,0:00:32.36,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}a{\r} aquel lugar
+Dialogue: 0,0:00:32.36,0:00:32.63,nar,,0,0,0,,a {\c&H0000E5FF&\fscx108\fscy108}aquel{\r} lugar
+Dialogue: 0,0:00:32.63,0:00:33.40,nar,,0,0,0,,a aquel {\c&H0000E5FF&\fscx108\fscy108}lugar{\r}
+Dialogue: 0,0:00:35.33,0:00:36.42,dan,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Bueno{\r} Abuela
+Dialogue: 0,0:00:36.42,0:00:37.33,dan,,0,0,0,,Bueno {\c&H0000E5FF&\fscx108\fscy108}Abuela{\r}
+Dialogue: 0,0:00:37.51,0:00:38.40,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Daniel{\r} mijo ven
+Dialogue: 0,0:00:38.40,0:00:39.37,abu,,0,0,0,,Daniel {\c&H0000E5FF&\fscx108\fscy108}mijo{\r} ven
+Dialogue: 0,0:00:39.37,0:00:39.70,abu,,0,0,0,,Daniel mijo {\c&H0000E5FF&\fscx108\fscy108}ven{\r}
+Dialogue: 0,0:00:39.70,0:00:40.48,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}pronto{\r} por favor
+Dialogue: 0,0:00:40.48,0:00:40.66,abu,,0,0,0,,pronto {\c&H0000E5FF&\fscx108\fscy108}por{\r} favor
+Dialogue: 0,0:00:40.66,0:00:41.73,abu,,0,0,0,,pronto por {\c&H0000E5FF&\fscx108\fscy108}favor{\r}
+Dialogue: 0,0:00:41.73,0:00:42.17,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Tengo{\r} miedo
+Dialogue: 0,0:00:42.17,0:00:43.07,abu,,0,0,0,,Tengo {\c&H0000E5FF&\fscx108\fscy108}miedo{\r}
+Dialogue: 0,0:00:43.35,0:00:43.73,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Había{\r} recibido una
+Dialogue: 0,0:00:43.73,0:00:44.23,nar,,0,0,0,,Había {\c&H0000E5FF&\fscx108\fscy108}recibido{\r} una
+Dialogue: 0,0:00:44.23,0:00:44.45,nar,,0,0,0,,Había recibido {\c&H0000E5FF&\fscx108\fscy108}una{\r}
+Dialogue: 0,0:00:44.45,0:00:44.85,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}llamada{\r} de su
+Dialogue: 0,0:00:44.85,0:00:44.98,nar,,0,0,0,,llamada {\c&H0000E5FF&\fscx108\fscy108}de{\r} su
+Dialogue: 0,0:00:44.98,0:00:45.10,nar,,0,0,0,,llamada de {\c&H0000E5FF&\fscx108\fscy108}su{\r}
+Dialogue: 0,0:00:45.10,0:00:46.05,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}abuela{\r} Pero había
+Dialogue: 0,0:00:46.05,0:00:46.27,nar,,0,0,0,,abuela {\c&H0000E5FF&\fscx108\fscy108}Pero{\r} había
+Dialogue: 0,0:00:46.27,0:00:46.60,nar,,0,0,0,,abuela Pero {\c&H0000E5FF&\fscx108\fscy108}había{\r}
+Dialogue: 0,0:00:46.60,0:00:46.83,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}algo{\r} extraño en
+Dialogue: 0,0:00:46.83,0:00:47.32,nar,,0,0,0,,algo {\c&H0000E5FF&\fscx108\fscy108}extraño{\r} en
+Dialogue: 0,0:00:47.32,0:00:47.40,nar,,0,0,0,,algo extraño {\c&H0000E5FF&\fscx108\fscy108}en{\r}
+Dialogue: 0,0:00:47.40,0:00:47.55,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}su{\r} voz parecía
+Dialogue: 0,0:00:47.55,0:00:48.44,nar,,0,0,0,,su {\c&H0000E5FF&\fscx108\fscy108}voz{\r} parecía
+Dialogue: 0,0:00:48.44,0:00:49.03,nar,,0,0,0,,su voz {\c&H0000E5FF&\fscx108\fscy108}parecía{\r}
+Dialogue: 0,0:00:49.03,0:00:49.42,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}tener{\r} miedo
+Dialogue: 0,0:00:49.42,0:00:50.23,nar,,0,0,0,,tener {\c&H0000E5FF&\fscx108\fscy108}miedo{\r}
+Dialogue: 0,0:00:50.92,0:00:51.21,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Cuando{\r} llegó las
+Dialogue: 0,0:00:51.21,0:00:51.85,nar,,0,0,0,,Cuando {\c&H0000E5FF&\fscx108\fscy108}llegó{\r} las
+Dialogue: 0,0:00:51.85,0:00:52.01,nar,,0,0,0,,Cuando llegó {\c&H0000E5FF&\fscx108\fscy108}las{\r}
+Dialogue: 0,0:00:52.01,0:00:52.41,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}calles{\r} estaban vacías
+Dialogue: 0,0:00:52.41,0:00:52.83,nar,,0,0,0,,calles {\c&H0000E5FF&\fscx108\fscy108}estaban{\r} vacías
+Dialogue: 0,0:00:52.83,0:00:53.87,nar,,0,0,0,,calles estaban {\c&H0000E5FF&\fscx108\fscy108}vacías{\r}
+Dialogue: 0,0:00:53.87,0:00:54.13,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Las{\r} ventanas cerradas
+Dialogue: 0,0:00:54.13,0:00:54.99,nar,,0,0,0,,Las {\c&H0000E5FF&\fscx108\fscy108}ventanas{\r} cerradas
+Dialogue: 0,0:00:54.99,0:00:56.18,nar,,0,0,0,,Las ventanas {\c&H0000E5FF&\fscx108\fscy108}cerradas{\r}
+Dialogue: 0,0:00:56.18,0:00:56.32,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Y{\r} ninguna persona
+Dialogue: 0,0:00:56.32,0:00:56.76,nar,,0,0,0,,Y {\c&H0000E5FF&\fscx108\fscy108}ninguna{\r} persona
+Dialogue: 0,0:00:56.76,0:00:57.26,nar,,0,0,0,,Y ninguna {\c&H0000E5FF&\fscx108\fscy108}persona{\r}
+Dialogue: 0,0:00:57.26,0:00:57.81,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}parecía{\r} querer ser
+Dialogue: 0,0:00:57.81,0:00:58.16,nar,,0,0,0,,parecía {\c&H0000E5FF&\fscx108\fscy108}querer{\r} ser
+Dialogue: 0,0:00:58.16,0:00:58.41,nar,,0,0,0,,parecía querer {\c&H0000E5FF&\fscx108\fscy108}ser{\r}
+Dialogue: 0,0:00:58.41,0:00:59.17,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}vista{\r}
+Dialogue: 0,0:01:04.86,0:01:05.63,dan,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Abuela{\r} soy yo
+Dialogue: 0,0:01:05.63,0:01:05.87,dan,,0,0,0,,Abuela {\c&H0000E5FF&\fscx108\fscy108}soy{\r} yo
+Dialogue: 0,0:01:05.87,0:01:06.52,dan,,0,0,0,,Abuela soy {\c&H0000E5FF&\fscx108\fscy108}yo{\r}
+Dialogue: 0,0:01:06.52,0:01:07.42,dan,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Daniel{\r}
+Dialogue: 0,0:01:08.13,0:01:08.90,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Ay{\r} mijo sí
+Dialogue: 0,0:01:08.90,0:01:09.91,abu,,0,0,0,,Ay {\c&H0000E5FF&\fscx108\fscy108}mijo{\r} sí
+Dialogue: 0,0:01:09.91,0:01:10.16,abu,,0,0,0,,Ay mijo {\c&H0000E5FF&\fscx108\fscy108}sí{\r}
+Dialogue: 0,0:01:10.16,0:01:11.37,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}viniste{\r}
+Dialogue: 0,0:01:11.69,0:01:11.89,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Al{\r} entrar a
+Dialogue: 0,0:01:11.89,0:01:12.26,nar,,0,0,0,,Al {\c&H0000E5FF&\fscx108\fscy108}entrar{\r} a
+Dialogue: 0,0:01:12.26,0:01:12.31,nar,,0,0,0,,Al entrar {\c&H0000E5FF&\fscx108\fscy108}a{\r}
+Dialogue: 0,0:01:12.31,0:01:12.43,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}la{\r} casa su
+Dialogue: 0,0:01:12.43,0:01:13.15,nar,,0,0,0,,la {\c&H0000E5FF&\fscx108\fscy108}casa{\r} su
+Dialogue: 0,0:01:13.15,0:01:13.28,nar,,0,0,0,,la casa {\c&H0000E5FF&\fscx108\fscy108}su{\r}
+Dialogue: 0,0:01:13.28,0:01:13.60,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}abuela{\r} lo recibió
+Dialogue: 0,0:01:13.60,0:01:13.73,nar,,0,0,0,,abuela {\c&H0000E5FF&\fscx108\fscy108}lo{\r} recibió
+Dialogue: 0,0:01:13.73,0:01:14.20,nar,,0,0,0,,abuela lo {\c&H0000E5FF&\fscx108\fscy108}recibió{\r}
+Dialogue: 0,0:01:14.20,0:01:14.40,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}con{\r} lágrimas en
+Dialogue: 0,0:01:14.40,0:01:14.97,nar,,0,0,0,,con {\c&H0000E5FF&\fscx108\fscy108}lágrimas{\r} en
+Dialogue: 0,0:01:14.97,0:01:15.05,nar,,0,0,0,,con lágrimas {\c&H0000E5FF&\fscx108\fscy108}en{\r}
+Dialogue: 0,0:01:15.05,0:01:15.23,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}los{\r} ojos
+Dialogue: 0,0:01:15.23,0:01:16.08,nar,,0,0,0,,los {\c&H0000E5FF&\fscx108\fscy108}ojos{\r}
+Dialogue: 0,0:01:18.62,0:01:19.45,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Daniel{\r} escúchame bien
+Dialogue: 0,0:01:19.45,0:01:20.10,abu,,0,0,0,,Daniel {\c&H0000E5FF&\fscx108\fscy108}escúchame{\r} bien
+Dialogue: 0,0:01:20.10,0:01:21.10,abu,,0,0,0,,Daniel escúchame {\c&H0000E5FF&\fscx108\fscy108}bien{\r}
+Dialogue: 0,0:01:21.10,0:01:21.43,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Cuando{\r} el reloj
+Dialogue: 0,0:01:21.43,0:01:21.53,abu,,0,0,0,,Cuando {\c&H0000E5FF&\fscx108\fscy108}el{\r} reloj
+Dialogue: 0,0:01:21.53,0:01:21.97,abu,,0,0,0,,Cuando el {\c&H0000E5FF&\fscx108\fscy108}reloj{\r}
+Dialogue: 0,0:01:21.97,0:01:22.38,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}marque{\r} las tres
+Dialogue: 0,0:01:22.38,0:01:22.65,abu,,0,0,0,,marque {\c&H0000E5FF&\fscx108\fscy108}las{\r} tres
+Dialogue: 0,0:01:22.65,0:01:22.97,abu,,0,0,0,,marque las {\c&H0000E5FF&\fscx108\fscy108}tres{\r}
+Dialogue: 0,0:01:22.97,0:01:23.34,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}treinta{\r} y tres
+Dialogue: 0,0:01:23.34,0:01:23.42,abu,,0,0,0,,treinta {\c&H0000E5FF&\fscx108\fscy108}y{\r} tres
+Dialogue: 0,0:01:23.42,0:01:24.42,abu,,0,0,0,,treinta y {\c&H0000E5FF&\fscx108\fscy108}tres{\r}
+Dialogue: 0,0:01:24.42,0:01:24.90,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}no{\r} abras la
+Dialogue: 0,0:01:24.90,0:01:25.29,abu,,0,0,0,,no {\c&H0000E5FF&\fscx108\fscy108}abras{\r} la
+Dialogue: 0,0:01:25.29,0:01:25.45,abu,,0,0,0,,no abras {\c&H0000E5FF&\fscx108\fscy108}la{\r}
+Dialogue: 0,0:01:25.45,0:01:26.34,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}puerta{\r}
+Dialogue: 0,0:01:27.04,0:01:27.22,dan,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Por{\r} qué abuela
+Dialogue: 0,0:01:27.22,0:01:27.65,dan,,0,0,0,,Por {\c&H0000E5FF&\fscx108\fscy108}qué{\r} abuela
+Dialogue: 0,0:01:27.65,0:01:28.52,dan,,0,0,0,,Por qué {\c&H0000E5FF&\fscx108\fscy108}abuela{\r}
+Dialogue: 0,0:01:28.52,0:01:28.69,dan,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Qué{\r} hay allá
+Dialogue: 0,0:01:28.69,0:01:28.84,dan,,0,0,0,,Qué {\c&H0000E5FF&\fscx108\fscy108}hay{\r} allá
+Dialogue: 0,0:01:28.84,0:01:29.05,dan,,0,0,0,,Qué hay {\c&H0000E5FF&\fscx108\fscy108}allá{\r}
+Dialogue: 0,0:01:29.05,0:01:29.80,dan,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}afuera{\r}
+Dialogue: 0,0:01:30.46,0:01:30.69,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Pero{\r} justo cuando
+Dialogue: 0,0:01:30.69,0:01:31.10,nar,,0,0,0,,Pero {\c&H0000E5FF&\fscx108\fscy108}justo{\r} cuando
+Dialogue: 0,0:01:31.10,0:01:31.39,nar,,0,0,0,,Pero justo {\c&H0000E5FF&\fscx108\fscy108}cuando{\r}
+Dialogue: 0,0:01:31.39,0:01:31.48,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}el{\r} reloj cambió
+Dialogue: 0,0:01:31.48,0:01:31.87,nar,,0,0,0,,el {\c&H0000E5FF&\fscx108\fscy108}reloj{\r} cambió
+Dialogue: 0,0:01:31.87,0:01:32.23,nar,,0,0,0,,el reloj {\c&H0000E5FF&\fscx108\fscy108}cambió{\r}
+Dialogue: 0,0:01:32.23,0:01:32.37,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}de{\r} hora alguien
+Dialogue: 0,0:01:32.37,0:01:33.27,nar,,0,0,0,,de {\c&H0000E5FF&\fscx108\fscy108}hora{\r} alguien
+Dialogue: 0,0:01:33.27,0:01:33.73,nar,,0,0,0,,de hora {\c&H0000E5FF&\fscx108\fscy108}alguien{\r}
+Dialogue: 0,0:01:33.73,0:01:34.09,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}llamó{\r} desde el
+Dialogue: 0,0:01:34.09,0:01:34.44,nar,,0,0,0,,llamó {\c&H0000E5FF&\fscx108\fscy108}desde{\r} el
+Dialogue: 0,0:01:34.44,0:01:34.58,nar,,0,0,0,,llamó desde {\c&H0000E5FF&\fscx108\fscy108}el{\r}
+Dialogue: 0,0:01:34.58,0:01:34.87,nar,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}otro{\r} lado
+Dialogue: 0,0:01:34.87,0:01:35.63,nar,,0,0,0,,otro {\c&H0000E5FF&\fscx108\fscy108}lado{\r}
+Dialogue: 0,0:01:38.46,0:01:38.83,abu,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Ya{\r} llegó
+Dialogue: 0,0:01:38.83,0:01:39.81,abu,,0,0,0,,Ya {\c&H0000E5FF&\fscx108\fscy108}llegó{\r}
+Dialogue: 0,0:01:40.23,0:01:41.26,sus,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}Daniel{\r} sé que
+Dialogue: 0,0:01:41.26,0:01:41.57,sus,,0,0,0,,Daniel {\c&H0000E5FF&\fscx108\fscy108}sé{\r} que
+Dialogue: 0,0:01:41.57,0:01:41.66,sus,,0,0,0,,Daniel sé {\c&H0000E5FF&\fscx108\fscy108}que{\r}
+Dialogue: 0,0:01:41.66,0:01:42.07,sus,,0,0,0,,{\c&H0000E5FF&\fscx108\fscy108}estás{\r} ahí
+Dialogue: 0,0:01:42.07,0:01:42.72,sus,,0,0,0,,estás {\c&H0000E5FF&\fscx108\fscy108}ahí{\r}

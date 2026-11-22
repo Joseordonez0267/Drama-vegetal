@@ -1,5 +1,5 @@
 import numpy as np, json, wave
-SR=48000; TL=json.load(open('p4/tl.json')); T=TL['total']; N=int(SR*T); ev=TL['ev']; C=TL['clips']
+SR=48000; TL=json.load(open('p5/tl.json')); T=TL['total']; N=int(SR*T); ev=TL['ev']; C=TL['clips']
 rng=np.random.default_rng(21)
 mus=np.zeros(N); fx=np.zeros(N); dry=np.zeros(N)
 CL={x['name']:x for x in C}; cs=lambda n:CL[n]['start']; ce=lambda n:CL[n]['end']; VO={v['k']:v for v in TL['voices']}; kn=ev['knocks']
@@ -39,7 +39,7 @@ for o,f in [(0,293.7),(.9,440),(1.8,349.2),(3.0,329.6),(4.2,293.7)]: piano(ev['c
 s=tt(2.5); add(mus,ev['figure']+2.0,sum(np.sin(2*np.pi*f*s) for f in (311.1,329.6,466.2,493.9))*np.exp(-s*1.2)*np.minimum(1,s/.05)*.12)
 s=tt(4); add(dry,ev['fade']-.1,np.sin(2*np.pi*(65*s-10*s**2))*np.exp(-s*1.1)*.9)
 # ---------- night ambience (exterior only) ----------
-ext_ranges=[(0,cs('drive')),(cs('phone')+ (VO['n4']['start']-cs('phone')) ,cs('warn')),(ev['figure'],ev['fade']),(ev['card'],T)]
+ext_ranges=[(0,cs('drive')),(0,ev['cold']),(cs('phone')+ (VO['n4']['start']-cs('phone')) ,cs('warn')),(ev['figure'],ev['fade']),(ev['card'],T)]
 def cricket(t0,f,v):
     for k in range(3):
         s=tt(.035); add(fx,t0+k*.055,np.sin(2*np.pi*f*s)*np.hanning(len(s))*v)
@@ -104,11 +104,21 @@ while tb<ev['card']-.5:
     for o,v in ((0,.35),(.22,.25)): s=tt(.25); add(fx,tb+o,np.sin(2*np.pi*55*s)*np.exp(-s*18)*v)
     tb+=60/72
 s=tt(1.2); add(mus,ev['poll']+.1,sum(np.sin(2*np.pi*f*s) for f in (146.8,220,293.7))*np.exp(-s*1.5)*np.minimum(1,s/.02)*.1)
+# ---- cold open: knocks, riser, impact into the title ----
+for kt in ev['coKnocks']: s=tt(.6); add(dry,kt,np.sin(2*np.pi*(95*s-40*s**2))*np.exp(-s*14)*1.0+bp(noise(.6),180,900)*np.exp(-s*30)*2.2)
+s=tt(1.6); add(mus,ev['cold']-1.7,np.sin(2*np.pi*np.cumsum(np.interp(s,[0,1.6],[180,880]))/SR)*(s/1.6)**3*.15)
+s=tt(3.5); add(dry,ev['cold']-.05,np.sin(2*np.pi*(62*s-9*s**2))*np.exp(-s*1.3)*.9)
+s=tt(2.2); add(mus,ev['cold']-.6+2.0,sum(np.sin(2*np.pi*f*s) for f in (311.1,329.6,466.2))*np.exp(-s*1.4)*np.minimum(1,s/.05)*.0)
+# ---- part-2 teaser: handle rattles and turns, sting ----
+te=ev['teaser']
+for i in range(6): s=tt(.08); add(fx,te+.35+i*.22,bp(noise(.08),900,4000)*np.exp(-s*50)*.5)
+s=tt(1.4); f=np.interp(s,[0,1.4],[30,12]); pulses=(np.sin(2*np.pi*np.cumsum(f)/SR)>.96).astype(float); add(fx,te+.4,bp(pulses,400,3000)*np.sin(np.pi*s/1.4)*1.4)
+s=tt(3); add(dry,te+1.85,np.sin(2*np.pi*(70*s-12*s**2))*np.exp(-s*1.2)*.8); add(mus,te+1.85,sum(np.sin(2*np.pi*f*s) for f in (293.7,311.1,440,466.2))*np.exp(-s*1.3)*np.minimum(1,s/.03)*.12)
 ir_t=tt(2.0); ir=rng.uniform(-1,1,len(ir_t))*np.exp(-ir_t*3.2); ir[0]=0
 def reverb(x,mix):
     n=len(x)+len(ir); y=np.fft.irfft(np.fft.rfft(x,n)*np.fft.rfft(ir,n),n)[:len(x)]; y/=np.abs(y).max()+1e-9; return x+y*mix*np.abs(x).max()
 fxall=reverb(fx+dry,.3); mus=reverb(mus,.3)
-for name,buf in (('p4/music.wav',mus),('p4/fx.wav',fxall)):
+for name,buf in (('p5/music.wav',mus),('p5/fx.wav',fxall)):
     b=buf/(np.abs(buf).max()+1e-9)*.9; st=(np.stack([b,b],1)*32767).astype(np.int16)
     wv=wave.open(name,'wb'); wv.setnchannels(2); wv.setsampwidth(2); wv.setframerate(SR); wv.writeframes(st.tobytes()); wv.close()
 print('ok')
