@@ -339,7 +339,7 @@ const pend = grp(wc, 0, 1.8, .14); mesh(Box(.02, .6, .02), M('#b08a40', { metaln
 // side door (right wall, x = 3.95)
 const inDoorG = grp(inn, 3.9, 0, .4); const inDoor = grp(inDoorG, 0, 0, -.65); mesh(Box(.1, 2.2, 1.3), M('#4a2c1a'), inDoor, 0, 1.1, .65);
 for (const y of [.5, 1.7]) mesh(Box(.12, .12, 1.3), M('#2a180c'), inDoor, -.02, y, .65);
-mesh(new THREE.SphereGeometry(.045, 6, 4), M('#b08a40', { metalness: .6, roughness: .35 }), inDoor, -.09, 1.05, 1.15, false); mesh(Box(.04, .14, .05), M('#6a5020', { metalness: .5 }), inDoor, -.06, 1.05, 1.15, false);
+const knobG = grp(inDoor, -.07, 1.05, 1.15); mesh(new THREE.SphereGeometry(.045, 6, 4), M('#b08a40', { metalness: .6, roughness: .35 }), knobG, -.03, 0, 0, false); mesh(Box(.03, .04, .16), M('#b08a40', { metalness: .6, roughness: .35 }), knobG, -.06, 0, -.06, false); mesh(Box(.04, .14, .05), M('#6a5020', { metalness: .5 }), inDoor, -.06, 1.05, 1.15, false);
 const gap = mesh(Box(.02, .04, 1.3), M('#9ab6ff', { emissive: '#8aa8ff', emissiveIntensity: 2 }), inDoorG, -.06, .02, 0, false);
 // window with moonlight
 mesh(Box(.1, .9, 1.0), M('#2a3a5a', { emissive: '#3a5a9a', emissiveIntensity: .7 }), inn, -3.95, 1.8, 1.6, false);
@@ -381,7 +381,7 @@ function shadowAt(x, z) { moonL.target.position.set(x, 0, z); moonL.position.set
 /* ---------- 2D post: vignette, grain, fades, end card ---------- */
 const grainC = (() => { const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'); const d = x.createImageData(256, 256); for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 18; } x.putImageData(d, 0, 0); return c; })();
 function post(t, black) {
-  o2.globalAlpha = 1; o2.globalCompositeOperation = 'source-over'; o2.drawImage(renderer.domElement, 0, 0);
+  o2.globalAlpha = 1; o2.globalCompositeOperation = 'source-over'; o2.filter = 'contrast(1.12) saturate(1.15) brightness(1.04)'; o2.drawImage(renderer.domElement, 0, 0); o2.filter = 'none';
   const vg = o2.createRadialGradient(W / 2, H * .45, H * .28, W / 2, H * .45, H * .78); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.6)'); o2.fillStyle = vg; o2.fillRect(0, 0, W, H);
   o2.globalCompositeOperation = 'overlay'; const ox = Math.random() * 256, oy = Math.random() * 256; for (let x = -ox; x < W; x += 256) for (let y = -oy; y < H; y += 256) o2.drawImage(grainC, x, y); o2.globalCompositeOperation = 'source-over';
   if (black > 0) { o2.fillStyle = `rgba(0,0,0,${clamp(black)})`; o2.fillRect(0, 0, W, H); }
@@ -403,7 +403,7 @@ function endCardText(k) {
 /* ---------- voting segment: viewers decide part 2 ---------- */
 const easeBack = x => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 function pollScene(t) {
-  const ev = TL.ev, lt = t - ev.poll, k = clamp(lt / (ev.card - ev.poll)), v = V('v1');
+  const ev = TL.ev, lt = t - ev.poll, k = clamp(lt / ((ev.teaser || ev.card) - ev.poll)), v = V('v1');
   // 3D background: Daniel's trembling hand inches from the door handle
   if (DANIEL.root.parent !== inn) inn.add(DANIEL.root); inn.add(ABUELA.root);
   place(DANIEL, 2.95, 0, .78, Math.PI / 2 + .15); ABUELA.root.visible = false;
@@ -469,16 +469,52 @@ function pollUI(t, lt, v) {
     o2.save(); o2.globalAlpha = ap(tC + .6); o2.textAlign = 'center'; o2.fillStyle = 'rgba(240,232,220,.9)'; o2.font = '600 24px Inter, sans-serif'; o2.fillText('Tu voto decide la parte 2', W / 2, 935); o2.restore();
   }
 }
+
+/* ---------- viral hook (cold open) and part-2 teaser ---------- */
+function glitchText(lines, y, size, a, t, col = '#ffffff') {
+  o2.save(); o2.textAlign = 'center'; o2.textBaseline = 'middle'; o2.font = `800 ${size}px Inter, sans-serif`;
+  lines.forEach((ln, i) => { const yy = y + i * size * 1.15, j = Math.random() < .25 ? (Math.random() - .5) * 10 : 0;
+    o2.globalAlpha = a * .7; o2.fillStyle = '#ff2a2a'; o2.fillText(ln, W / 2 + 3 + j, yy); o2.fillStyle = '#2ad4ff'; o2.fillText(ln, W / 2 - 3 - j, yy);
+    o2.globalAlpha = a; o2.lineWidth = 8; o2.strokeStyle = 'rgba(0,0,0,.85)'; o2.strokeText(ln, W / 2 + j, yy); o2.fillStyle = col; o2.fillText(ln, W / 2 + j, yy); });
+  o2.restore();
+}
+function coldOpen(t) {
+  const ev = TL.ev; exterior(t, .028); setWindows(0); setLamps(t, -1); LAMPS[2].pl.intensity = 60; TRUCK.g.visible = false; truckAt(0, t, false); TRUCK.setLights(false, false);
+  FIG.g.visible = true; FIG.g.position.set(18, 0, -2.25); FIG.g.rotation.y = Math.PI;
+  const turn = smooth(1.7, 3.2, t); FIG.P.head.rotation.y = turn * 2.6; const eo = smooth(2.6, 3.3, t); FIG.P.eyes.forEach(e => e.material.opacity = eo); FIG.P.eyeMesh.forEach(e => e.material.opacity = eo);
+  let sh = 0; for (const k of ev.coKnocks) sh += shakeAt(t, k, .02);
+  cam(lerp(15.4, 16.9, t / ev.cold) + sh, lerp(1.25, 1.45, t / ev.cold), lerp(2.9, 1.4, t / ev.cold), 18, 2.15, -2.3, lerp(46, 30, t / ev.cold));
+  renderer.render(ext, camera);
+  let flash = 0; for (const k of ev.coKnocks) { const d = t - k; if (d > 0 && d < .12) flash = 1 - d / .12; }
+  post(t, clamp(1 - t / .35) + (t > ev.cold - .25 ? (t - (ev.cold - .25)) / .25 : 0));
+  if (flash) { o2.fillStyle = `rgba(255,255,255,${.25 * flash})`; o2.fillRect(0, 0, W, H); }
+  const a1 = clamp((t - .2) / .25) * (t < ev.cold - .2 ? 1 : 0);
+  glitchText(['NUNCA ABRAS', 'LA PUERTA'], 880, 58, a1, t);
+  glitchText(['A LAS 3:33'], 1025, 72, clamp((t - .9) / .2) * (t < ev.cold - .2 ? 1 : 0), t, '#ff4a3a');
+}
+function teaser(t) {
+  const ev = TL.ev, lt = t - ev.teaser, k = clamp(lt / (ev.card - ev.teaser));
+  hideAll(); ABUELA.root.visible = false; DANIEL.root.visible = false;
+  const fl = flick(t, .8); candleL.intensity = 5 * fl; fillL.intensity = 1.5 * fl; doorL.intensity = 6 + 4 * Math.sin(t * 9);
+  inDoor.rotation.y = 0; inDoor.position.x = 0; dustP.material.opacity = 0;
+  knobG.rotation.x = -smooth(.3, 1.8, lt) * .9 + (lt > 1.8 ? Math.sin(t * 30) * .03 : 0);
+  cam(lerp(2.5, 2.75, k), 1.3, lerp(1.6, 1.4, k), 3.85, 1.0, .9, lerp(38, 30, k));
+  renderer.render(inn, camera); post(t, clamp(1 - lt / .3) + clamp((lt - (ev.card - ev.teaser - .25)) / .25));
+  const a = clamp((lt - 1.9) / .25);
+  glitchText(['PARTE 2'], 260, 76, a, t, '#ff4a3a'); glitchText(['MUY PRONTO'], 345, 40, a, t);
+}
 /* ---------- shots ---------- */
 function exterior(t, fogD) { ext.fog.density = fogD; mistTex.offset.set(t * .004, t * .002); updateMoths(t); MISTS.forEach(m => { m.position.x = ((m.userData.x + t * m.userData.sp + 60) % 120 + 120) % 120 - 60; }); }
 function render(t) {
-  NOW = t; const C = TL.clips, ev = TL.ev;
+  NOW = t; const C = TL.clips, ev = TL.ev; TRUCK.g.visible = true;
   const ci = C.findIndex(c => t >= c.start && t < c.end), c = ci >= 0 ? C[ci] : C[C.length - 1];
   const lt = t - c.start, k = clamp(lt / (c.end - c.start));
   hideAll(); standDaniel(); let scene = ext; let black = 0;
   TRUCK.setLights(true); TRUCK.cab.intensity = .8; ghLight.intensity = 0; ghDoor.rotation.y = 0; setLamps(t, -1); setWindows(.8);
   drawClock(towerTex.userData.ctx, 2, 58, 0); towerTex.needsUpdate = true;
-  if (ev.poll != null && t >= ev.poll && t < ev.card) { pollScene(t); if (DANIEL.root.parent !== ext) ext.add(DANIEL.root); if (ABUELA.root.parent !== ext) ext.add(ABUELA.root); return; }
+  if (ev.cold != null && t < ev.cold) { coldOpen(t); return; }
+  if (ev.teaser != null && t >= ev.teaser && t < ev.card) { inn.add(DANIEL.root); teaser(t); if (DANIEL.root.parent !== ext) ext.add(DANIEL.root); return; }
+  if (ev.poll != null && t >= ev.poll && t < (ev.teaser || ev.card)) { pollScene(t); if (DANIEL.root.parent !== ext) ext.add(DANIEL.root); if (ABUELA.root.parent !== ext) ext.add(ABUELA.root); return; }
   if (t >= ev.card) { // end card over the sleeping village
     exterior(t, .009); const kk = (t - ev.card) / (TL.total - ev.card); setWindows(0); truckAt(0, t, false); TRUCK.setLights(false);
     cam(-55 + kk * 6, 30, 70, 5, 4, -10, 50); shadowAt(0, 0); renderer.render(ext, camera); post(t, .35); endCardText(kk); return;
@@ -590,8 +626,9 @@ function render(t) {
   const fl = scene === ext ? faceLE : faceLI; if (fl.parent !== scene) scene.add(fl); fl.position.copy(camera.position).add(V3(0, .3, 0)); fl.intensity = camera.fov < 46 ? (scene === ext ? 1.6 : 1.2) : 0; (scene === ext ? faceLI : faceLE).intensity = 0;
   renderer.render(scene, camera);
   let d = 9; for (const cc of C) d = Math.min(d, Math.abs(t - cc.start)); d = Math.min(d, t);
-  black = Math.max(black, (1 - clamp(d / .3)) * .85, t < 1.2 ? 1 - t / 1.2 : 0);
+  black = Math.max(black, (1 - clamp(d / .1)) * .5);
   post(t, black);
+  if (c.name === 'aerial' && lt < 3.2) { const a = clamp(lt / .4) * clamp((3.2 - lt) / .5); o2.save(); o2.globalAlpha = a; o2.textAlign = 'center'; o2.shadowColor = 'rgba(0,0,0,.9)'; o2.shadowBlur = 16; o2.fillStyle = '#f2ead8'; o2.font = '800 54px Cinzel, serif'; o2.fillText('EL PUEBLO', W / 2, 250); o2.fillText('QUE NO DUERME', W / 2, 315); o2.fillStyle = '#ff5a4a'; o2.font = '700 22px Inter, sans-serif'; if ('letterSpacing' in o2) o2.letterSpacing = '6px'; o2.fillText('EPISODIO 1', W / 2, 365); o2.restore(); }
   // put Daniel/Abuela back in exterior for next frame
   if (DANIEL.root.parent !== ext && DANIEL.root.parent !== TRUCK.g) ext.add(DANIEL.root); if (ABUELA.root.parent !== ext) ext.add(ABUELA.root);
 }
