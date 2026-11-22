@@ -1,0 +1,18 @@
+{
+ "n0":["nar","En algún lugar de las montañas de México... existe un pueblo que no aparece en los mapas."],
+ "n1":["nar","Sus habitantes tienen una regla que nadie se atreve a romper: jamás salir después de las tres de la madrugada."],
+ "n2":["nar","Durante años, nadie preguntó por qué. Hasta que una noche... un desconocido llegó al pueblo."],
+ "n3":["nar","Su nombre era Daniel. Tenía veinticuatro años, y llevaba más de una década sin regresar a aquel lugar."],
+ "n4":["nar","Había recibido una llamada de su abuela. Pero había algo extraño en su voz... parecía tener miedo."],
+ "n5":["nar","Cuando llegó, las calles estaban vacías. Las ventanas, cerradas. Y ninguna persona parecía querer ser vista."],
+ "n6":["nar","Al entrar a la casa, su abuela lo recibió con lágrimas en los ojos."],
+ "n8":["nar","Pero justo cuando el reloj cambió de hora... alguien llamó desde el otro lado."],
+ "d1":["daniel","¿Bueno? ¿Abuela?"],
+ "a1":["tel","Daniel, mijo, ven pronto, por favor. Tengo miedo."],
+ "d2":["daniel","Abuela, soy yo, Daniel."],
+ "a2":["abuela","Ay, mijo. Sí viniste."],
+ "a3":["abuela","Daniel, escúchame bien. Cuando el reloj marque las tres treinta y tres, no abras la puerta."],
+ "d3":["daniel","¿Por qué, abuela? ¿Qué hay allá afuera?"],
+ "a4":["abuela","Ya llegó."],
+ "sus":["sus","Daniel... sé que estás ahí."]
+}

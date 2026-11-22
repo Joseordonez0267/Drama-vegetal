@@ -12,53 +12,53 @@ Style: sus,Inter ExtraBold,64,&H00808AFF,&H00FFFFFF,&H00000000,&H64000000,0,1,0,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.50,0:00:02.47,nar,,0,0,0,,{\fad(80,60)}En algún lugar de
-Dialogue: 0,0:00:02.47,0:00:04.15,nar,,0,0,0,,{\fad(80,60)}las montañas de México
-Dialogue: 0,0:00:04.15,0:00:05.37,nar,,0,0,0,,{\fad(80,60)}existe un pueblo que
-Dialogue: 0,0:00:05.37,0:00:06.41,nar,,0,0,0,,{\fad(80,60)}no aparece en los
-Dialogue: 0,0:00:06.41,0:00:07.30,nar,,0,0,0,,{\fad(80,60)}mapas
-Dialogue: 0,0:00:09.60,0:00:11.09,nar,,0,0,0,,{\fad(80,60)}Sus habitantes tienen una
-Dialogue: 0,0:00:11.09,0:00:12.10,nar,,0,0,0,,{\fad(80,60)}regla que nadie se
-Dialogue: 0,0:00:12.10,0:00:13.66,nar,,0,0,0,,{\fad(80,60)}atreve a romper jamás
-Dialogue: 0,0:00:13.66,0:00:14.77,nar,,0,0,0,,{\fad(80,60)}salir después de las
-Dialogue: 0,0:00:14.77,0:00:16.18,nar,,0,0,0,,{\fad(80,60)}tres de la madrugada
-Dialogue: 0,0:00:18.00,0:00:20.11,nar,,0,0,0,,{\fad(80,60)}Durante años nadie preguntó
-Dialogue: 0,0:00:20.11,0:00:22.05,nar,,0,0,0,,{\fad(80,60)}por qué Hasta que
-Dialogue: 0,0:00:22.05,0:00:23.89,nar,,0,0,0,,{\fad(80,60)}una noche un desconocido
-Dialogue: 0,0:00:23.89,0:00:25.13,nar,,0,0,0,,{\fad(80,60)}llegó al pueblo
-Dialogue: 0,0:00:25.83,0:00:28.10,nar,,0,0,0,,{\fad(80,60)}Su nombre era Daniel
-Dialogue: 0,0:00:28.10,0:00:29.99,nar,,0,0,0,,{\fad(80,60)}Tenía veinticuatro años y
-Dialogue: 0,0:00:29.99,0:00:30.98,nar,,0,0,0,,{\fad(80,60)}llevaba más de una
-Dialogue: 0,0:00:30.98,0:00:32.34,nar,,0,0,0,,{\fad(80,60)}década sin regresar a
-Dialogue: 0,0:00:32.34,0:00:33.38,nar,,0,0,0,,{\fad(80,60)}aquel lugar
-Dialogue: 0,0:00:34.98,0:00:37.14,dan,,0,0,0,,{\fad(80,60)}Bueno Abuela
-Dialogue: 0,0:00:36.99,0:00:39.69,abu,,0,0,0,,{\fad(80,60)}Daniel mijo ven pronto
-Dialogue: 0,0:00:39.69,0:00:42.75,abu,,0,0,0,,{\fad(80,60)}por favor Tengo miedo
-Dialogue: 0,0:00:42.75,0:00:44.34,nar,,0,0,0,,{\fad(80,60)}Había recibido una llamada
-Dialogue: 0,0:00:44.34,0:00:46.23,nar,,0,0,0,,{\fad(80,60)}de su abuela Pero
-Dialogue: 0,0:00:46.23,0:00:47.37,nar,,0,0,0,,{\fad(80,60)}había algo extraño en
-Dialogue: 0,0:00:47.37,0:00:49.04,nar,,0,0,0,,{\fad(80,60)}su voz parecía tener
-Dialogue: 0,0:00:49.04,0:00:49.83,nar,,0,0,0,,{\fad(80,60)}miedo
-Dialogue: 0,0:00:50.46,0:00:52.04,nar,,0,0,0,,{\fad(80,60)}Cuando llegó las calles
-Dialogue: 0,0:00:52.04,0:00:55.21,nar,,0,0,0,,{\fad(80,60)}estaban vacías Las ventanas
-Dialogue: 0,0:00:55.21,0:00:58.01,nar,,0,0,0,,{\fad(80,60)}cerradas Y ninguna persona
-Dialogue: 0,0:00:58.01,0:00:59.96,nar,,0,0,0,,{\fad(80,60)}parecía querer ser vista
-Dialogue: 0,0:01:05.30,0:01:07.70,dan,,0,0,0,,{\fad(80,60)}Abuela soy yo Daniel
-Dialogue: 0,0:01:07.60,0:01:09.69,abu,,0,0,0,,{\fad(80,60)}Mijo sí viniste
-Dialogue: 0,0:01:09.69,0:01:10.46,nar,,0,0,0,,{\fad(80,60)}Al entrar a la
-Dialogue: 0,0:01:10.46,0:01:11.81,nar,,0,0,0,,{\fad(80,60)}casa su abuela lo
-Dialogue: 0,0:01:11.81,0:01:13.20,nar,,0,0,0,,{\fad(80,60)}recibió con lágrimas en
-Dialogue: 0,0:01:13.20,0:01:14.25,nar,,0,0,0,,{\fad(80,60)}los ojos
-Dialogue: 0,0:01:15.82,0:01:18.52,abu,,0,0,0,,{\fad(80,60)}Daniel escúchame bien cuando
-Dialogue: 0,0:01:18.52,0:01:19.77,abu,,0,0,0,,{\fad(80,60)}el reloj marque las
-Dialogue: 0,0:01:19.77,0:01:21.19,abu,,0,0,0,,{\fad(80,60)}tres treinta y tres
-Dialogue: 0,0:01:21.19,0:01:22.65,abu,,0,0,0,,{\fad(80,60)}no abras la puerta
-Dialogue: 0,0:01:22.55,0:01:24.78,dan,,0,0,0,,{\fad(80,60)}Por qué abuela Qué
-Dialogue: 0,0:01:24.78,0:01:25.94,dan,,0,0,0,,{\fad(80,60)}hay allá afuera
-Dialogue: 0,0:01:26.44,0:01:27.47,nar,,0,0,0,,{\fad(80,60)}Pero justo cuando el
-Dialogue: 0,0:01:27.47,0:01:28.95,nar,,0,0,0,,{\fad(80,60)}reloj cambió de hora
-Dialogue: 0,0:01:28.95,0:01:30.15,nar,,0,0,0,,{\fad(80,60)}alguien llamó desde el
-Dialogue: 0,0:01:30.15,0:01:31.16,nar,,0,0,0,,{\fad(80,60)}otro lado
-Dialogue: 0,0:01:33.57,0:01:34.69,abu,,0,0,0,,{\fad(80,60)}Ya llegó
-Dialogue: 0,0:01:34.89,0:01:36.73,sus,,0,0,0,,{\fad(80,60)}Daniel sé que estás
-Dialogue: 0,0:01:36.73,0:01:37.38,sus,,0,0,0,,{\fad(80,60)}ahí
+Dialogue: 0,0:00:01.50,0:00:02.45,nar,,0,0,0,,{\fad(80,60)}En algún lugar de
+Dialogue: 0,0:00:02.45,0:00:04.09,nar,,0,0,0,,{\fad(80,60)}las montañas de México
+Dialogue: 0,0:00:04.09,0:00:05.29,nar,,0,0,0,,{\fad(80,60)}existe un pueblo que
+Dialogue: 0,0:00:05.29,0:00:06.30,nar,,0,0,0,,{\fad(80,60)}no aparece en los
+Dialogue: 0,0:00:06.30,0:00:07.19,nar,,0,0,0,,{\fad(80,60)}mapas
+Dialogue: 0,0:00:09.60,0:00:11.06,nar,,0,0,0,,{\fad(80,60)}Sus habitantes tienen una
+Dialogue: 0,0:00:11.06,0:00:12.05,nar,,0,0,0,,{\fad(80,60)}regla que nadie se
+Dialogue: 0,0:00:12.05,0:00:13.57,nar,,0,0,0,,{\fad(80,60)}atreve a romper jamás
+Dialogue: 0,0:00:13.57,0:00:14.66,nar,,0,0,0,,{\fad(80,60)}salir después de las
+Dialogue: 0,0:00:14.66,0:00:16.01,nar,,0,0,0,,{\fad(80,60)}tres de la madrugada
+Dialogue: 0,0:00:18.00,0:00:20.07,nar,,0,0,0,,{\fad(80,60)}Durante años nadie preguntó
+Dialogue: 0,0:00:20.07,0:00:21.96,nar,,0,0,0,,{\fad(80,60)}por qué Hasta que
+Dialogue: 0,0:00:21.96,0:00:23.77,nar,,0,0,0,,{\fad(80,60)}una noche un desconocido
+Dialogue: 0,0:00:23.77,0:00:24.92,nar,,0,0,0,,{\fad(80,60)}llegó al pueblo
+Dialogue: 0,0:00:25.62,0:00:27.83,nar,,0,0,0,,{\fad(80,60)}Su nombre era Daniel
+Dialogue: 0,0:00:27.83,0:00:29.68,nar,,0,0,0,,{\fad(80,60)}Tenía veinticuatro años y
+Dialogue: 0,0:00:29.68,0:00:30.66,nar,,0,0,0,,{\fad(80,60)}llevaba más de una
+Dialogue: 0,0:00:30.66,0:00:31.99,nar,,0,0,0,,{\fad(80,60)}década sin regresar a
+Dialogue: 0,0:00:31.99,0:00:32.98,nar,,0,0,0,,{\fad(80,60)}aquel lugar
+Dialogue: 0,0:00:34.59,0:00:36.63,dan,,0,0,0,,{\fad(80,60)}Bueno Abuela
+Dialogue: 0,0:00:36.48,0:00:39.02,abu,,0,0,0,,{\fad(80,60)}Daniel mijo ven pronto
+Dialogue: 0,0:00:39.02,0:00:41.86,abu,,0,0,0,,{\fad(80,60)}por favor Tengo miedo
+Dialogue: 0,0:00:41.86,0:00:43.43,nar,,0,0,0,,{\fad(80,60)}Había recibido una llamada
+Dialogue: 0,0:00:43.43,0:00:45.28,nar,,0,0,0,,{\fad(80,60)}de su abuela Pero
+Dialogue: 0,0:00:45.28,0:00:46.38,nar,,0,0,0,,{\fad(80,60)}había algo extraño en
+Dialogue: 0,0:00:46.38,0:00:48.02,nar,,0,0,0,,{\fad(80,60)}su voz parecía tener
+Dialogue: 0,0:00:48.02,0:00:48.79,nar,,0,0,0,,{\fad(80,60)}miedo
+Dialogue: 0,0:00:49.39,0:00:50.94,nar,,0,0,0,,{\fad(80,60)}Cuando llegó las calles
+Dialogue: 0,0:00:50.94,0:00:54.04,nar,,0,0,0,,{\fad(80,60)}estaban vacías Las ventanas
+Dialogue: 0,0:00:54.04,0:00:56.79,nar,,0,0,0,,{\fad(80,60)}cerradas Y ninguna persona
+Dialogue: 0,0:00:56.79,0:00:58.70,nar,,0,0,0,,{\fad(80,60)}parecía querer ser vista
+Dialogue: 0,0:01:04.00,0:01:06.14,dan,,0,0,0,,{\fad(80,60)}Abuela soy yo Daniel
+Dialogue: 0,0:01:06.05,0:01:09.76,abu,,0,0,0,,{\fad(80,60)}Ay mijo Sí viniste
+Dialogue: 0,0:01:09.76,0:01:10.51,nar,,0,0,0,,{\fad(80,60)}Al entrar a la
+Dialogue: 0,0:01:10.51,0:01:11.84,nar,,0,0,0,,{\fad(80,60)}casa su abuela lo
+Dialogue: 0,0:01:11.84,0:01:13.19,nar,,0,0,0,,{\fad(80,60)}recibió con lágrimas en
+Dialogue: 0,0:01:13.19,0:01:14.23,nar,,0,0,0,,{\fad(80,60)}los ojos
+Dialogue: 0,0:01:15.76,0:01:18.93,abu,,0,0,0,,{\fad(80,60)}Daniel escúchame bien Cuando
+Dialogue: 0,0:01:18.93,0:01:20.05,abu,,0,0,0,,{\fad(80,60)}el reloj marque las
+Dialogue: 0,0:01:20.05,0:01:21.45,abu,,0,0,0,,{\fad(80,60)}tres treinta y tres
+Dialogue: 0,0:01:21.45,0:01:22.86,abu,,0,0,0,,{\fad(80,60)}no abras la puerta
+Dialogue: 0,0:01:22.76,0:01:24.79,dan,,0,0,0,,{\fad(80,60)}Por qué abuela Qué
+Dialogue: 0,0:01:24.79,0:01:25.91,dan,,0,0,0,,{\fad(80,60)}hay allá afuera
+Dialogue: 0,0:01:26.41,0:01:27.42,nar,,0,0,0,,{\fad(80,60)}Pero justo cuando el
+Dialogue: 0,0:01:27.42,0:01:28.87,nar,,0,0,0,,{\fad(80,60)}reloj cambió de hora
+Dialogue: 0,0:01:28.87,0:01:30.04,nar,,0,0,0,,{\fad(80,60)}alguien llamó desde el
+Dialogue: 0,0:01:30.04,0:01:31.04,nar,,0,0,0,,{\fad(80,60)}otro lado
+Dialogue: 0,0:01:33.39,0:01:34.50,abu,,0,0,0,,{\fad(80,60)}Ya llegó
+Dialogue: 0,0:01:34.70,0:01:36.54,sus,,0,0,0,,{\fad(80,60)}Daniel sé que estás
+Dialogue: 0,0:01:36.54,0:01:37.20,sus,,0,0,0,,{\fad(80,60)}ahí
